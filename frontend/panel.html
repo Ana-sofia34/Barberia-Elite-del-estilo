@@ -1,0 +1,1240 @@
+ <!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Panel Premium | Barbería Élite del Estilo</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Widget de pagos en línea Wompi -->
+<script src="https://checkout.wompi.co/widget.js"></script>
+
+<style>
+
+:root{
+    --black:#0a0908;
+    --charcoal:#151210;
+    --charcoal-2:#1c1815;
+    --charcoal-3:#221d18;
+    --gold:#c9a24a;
+    --gold-light:#eeddab;
+    --gold-dim:#8a6f30;
+    --cream:#f3ecd9;
+    --ash:#9c9384;
+    --danger:#a13c3c;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:var(--black);
+    color:var(--cream);
+    font-family:'Jost', sans-serif;
+    min-height:100vh;
+}
+
+h1,h2,h3,h4,h5{
+    font-family:'Cinzel', serif;
+}
+
+::selection{
+    background:var(--gold);
+    color:var(--black);
+}
+
+::-webkit-scrollbar{width:8px;}
+::-webkit-scrollbar-track{background:var(--black);}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:10px;}
+
+/* ---------- entrance animation ---------- */
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(18px);}
+    to{opacity:1; transform:translateY(0);}
+}
+.fade-in{
+    opacity:0;
+    animation:fadeUp .7s cubic-bezier(.2,.7,.2,1) forwards;
+}
+.fade-in-1{animation-delay:.05s;}
+.fade-in-2{animation-delay:.15s;}
+.fade-in-3{animation-delay:.25s;}
+.fade-in-4{animation-delay:.35s;}
+.fade-in-5{animation-delay:.45s;}
+
+@media(prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+    .fade-in{opacity:1; transform:none;}
+}
+
+/* ===================== */
+/* SIDEBAR */
+/* ===================== */
+
+.sidebar{
+    background:linear-gradient(180deg, var(--charcoal-2), var(--black));
+    min-height:100vh;
+    padding:30px 24px;
+    border-right:1px solid rgba(201,162,74,.14);
+    position:relative;
+}
+
+.sidebar-brand{
+    color:var(--gold-light);
+    font-weight:700;
+    font-size:1.3rem;
+    letter-spacing:1px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.sidebar-brand i{
+    color:var(--gold);
+}
+
+.sidebar hr{
+    border-color:rgba(201,162,74,.2);
+    margin:22px 0;
+}
+
+/* AVATAR */
+.avatar{
+    width:88px;
+    height:88px;
+    border-radius:50%;
+    background:linear-gradient(135deg, var(--gold-dim), var(--gold) 55%, var(--gold-light));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Cinzel', serif;
+    font-size:1.9rem;
+    font-weight:800;
+    color:var(--black);
+    margin:auto;
+    box-shadow:0 0 0 1px rgba(201,162,74,.3), 0 12px 26px rgba(0,0,0,.5);
+}
+
+#nombre{
+    color:var(--gold-light);
+    margin-top:14px;
+    font-size:1.05rem;
+    font-weight:600;
+    letter-spacing:.5px;
+}
+
+.sidebar-user-tag{
+    color:var(--ash);
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:.9rem;
+    margin-top:2px;
+}
+
+/* SIDEBAR NAV BUTTONS */
+.nav-btn{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    width:100%;
+    text-align:left;
+    background:transparent;
+    border:1px solid transparent;
+    color:var(--cream);
+    padding:11px 14px;
+    border-radius:3px;
+    margin-bottom:8px;
+    font-family:'Jost', sans-serif;
+    font-weight:500;
+    letter-spacing:.3px;
+    transition:.3s;
+}
+
+.nav-btn i{
+    color:var(--gold-dim);
+    font-size:1.05rem;
+    transition:.3s;
+    width:18px;
+}
+
+.nav-btn:hover{
+    background:rgba(201,162,74,.08);
+    border-color:rgba(201,162,74,.25);
+    color:var(--gold-light);
+}
+.nav-btn:hover i{
+    color:var(--gold);
+}
+
+.nav-btn.active{
+    background:rgba(201,162,74,.1);
+    border-color:rgba(201,162,74,.4);
+    color:var(--gold-light);
+}
+.nav-btn.active i{
+    color:var(--gold);
+}
+
+.nav-btn.danger{
+    margin-top:24px;
+    border:1px solid rgba(161,60,60,.4);
+    color:#e0a5a5;
+}
+.nav-btn.danger i{
+    color:#c25c5c;
+}
+.nav-btn.danger:hover{
+    background:rgba(161,60,60,.12);
+    border-color:#c25c5c;
+    color:#f0c4c4;
+}
+
+/* ===================== */
+/* CONTENT */
+/* ===================== */
+
+.content{
+    padding:44px 40px;
+}
+
+.page-eyebrow{
+    color:var(--gold);
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-size:.95rem;
+}
+
+.page-title{
+    color:var(--gold-light);
+    font-weight:700;
+    font-size:2rem;
+    letter-spacing:.5px;
+    margin-top:4px;
+    margin-bottom:34px;
+}
+
+/* CARDS */
+.card{
+    background:linear-gradient(165deg, var(--charcoal-2), var(--charcoal));
+    border:1px solid rgba(201,162,74,.14);
+    border-radius:6px;
+    padding:26px;
+    margin-bottom:22px;
+    color:var(--cream);
+    transition:.35s;
+}
+
+.card:hover{
+    border-color:rgba(201,162,74,.32);
+}
+
+.card h5{
+    color:var(--ash);
+    font-family:'Jost', sans-serif;
+    font-weight:500;
+    font-size:.85rem;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.stat-card{
+    text-align:center;
+}
+
+.stat-card h2{
+    color:var(--gold-light);
+    font-size:2.4rem;
+    margin-top:8px;
+}
+
+.stat-card i{
+    color:var(--gold-dim);
+    font-size:1.4rem;
+    margin-bottom:6px;
+    display:block;
+}
+
+.stat-card.status h4{
+    margin-top:10px;
+    color:#7fbf8f;
+    font-family:'Jost', sans-serif;
+    font-weight:600;
+}
+
+/* FORM CARD */
+.card-title-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:6px;
+}
+.card-title-row i{
+    color:var(--gold);
+    font-size:1.15rem;
+}
+.card-title-row h4{
+    color:var(--gold-light);
+    font-size:1.25rem;
+    font-weight:600;
+}
+
+.card-subtext{
+    color:var(--ash);
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1rem;
+    margin-bottom:18px;
+}
+
+.form-label-gold{
+    color:var(--ash);
+    font-size:.78rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-bottom:6px;
+    margin-top:14px;
+    display:block;
+}
+
+.form-control, .form-select{
+    background:var(--charcoal-3);
+    border:1px solid rgba(201,162,74,.18);
+    color:var(--cream);
+    border-radius:3px;
+    padding:10px 14px;
+}
+
+.form-control:focus, .form-select:focus{
+    background:var(--charcoal-3);
+    color:var(--cream);
+    border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(201,162,74,.15);
+}
+
+.form-select option{
+    background:var(--charcoal-2);
+    color:var(--cream);
+}
+
+::placeholder{
+    color:#6d6558;
+}
+
+/* BOTONES */
+.btn-gold{
+    font-family:'Jost',sans-serif;
+    font-weight:600;
+    letter-spacing:.5px;
+    border-radius:3px;
+    padding:11px 22px;
+    background:linear-gradient(120deg, var(--gold-dim), var(--gold) 45%, var(--gold-light) 55%, var(--gold));
+    background-size:220% auto;
+    border:none;
+    color:var(--black);
+    transition:.4s;
+}
+.btn-gold:hover{
+    background-position:right center;
+    transform:translateY(-2px);
+    color:var(--black);
+    box-shadow:0 8px 22px rgba(201,162,74,.35);
+}
+
+.btn-outline-gold{
+    border:1px solid var(--gold-dim);
+    color:var(--gold-light);
+    border-radius:2px;
+    padding:9px 22px;
+    background:transparent;
+    transition:.3s;
+    font-weight:500;
+}
+.btn-outline-gold:hover{
+    border-color:var(--gold);
+    background:rgba(201,162,74,.08);
+    color:var(--gold-light);
+}
+
+/* LISTA HISTORIAL */
+.lista{
+    list-style:none;
+    margin-top:6px;
+}
+
+.lista li{
+    background:var(--charcoal-3);
+    border:1px solid rgba(201,162,74,.1);
+    padding:14px 18px;
+    border-radius:4px;
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    transition:.3s;
+}
+
+.lista li:hover{
+    border-color:rgba(201,162,74,.35);
+}
+
+.cita-info{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.cita-info i{
+    color:var(--gold);
+    font-size:1.1rem;
+}
+
+.cita-servicio{
+    color:var(--gold-light);
+    font-weight:600;
+    font-size:.95rem;
+}
+
+.cita-detalle{
+    color:var(--ash);
+    font-size:.85rem;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+}
+
+.badge-estado{
+    font-size:.68rem;
+    letter-spacing:.5px;
+    padding:4px 9px;
+    border-radius:20px;
+    font-weight:600;
+    text-transform:uppercase;
+    white-space:nowrap;
+}
+.badge-pendiente{background:rgba(161,124,60,.18);color:#e0bd7c;border:1px solid rgba(201,162,74,.4);}
+.badge-confirmada{background:rgba(90,140,200,.16);color:#a9c8ef;border:1px solid rgba(90,140,200,.4);}
+.badge-en_proceso{background:rgba(201,162,74,.2);color:var(--gold-light);border:1px solid var(--gold);}
+.badge-finalizada{background:rgba(91,138,99,.18);color:#a9d3af;border:1px solid rgba(91,138,99,.45);}
+.badge-cancelada{background:rgba(161,60,60,.16);color:#e0a5a5;border:1px solid rgba(161,60,60,.4);}
+.badge-no_asistio{background:rgba(120,120,120,.18);color:#c9c4bb;border:1px solid rgba(150,150,150,.35);}
+
+.badge-pago{
+    font-size:.68rem;
+    letter-spacing:.5px;
+    padding:4px 9px;
+    border-radius:20px;
+    font-weight:600;
+    text-transform:uppercase;
+    white-space:nowrap;
+}
+.badge-pago-pagado{background:rgba(91,138,99,.18);color:#a9d3af;border:1px solid rgba(91,138,99,.45);}
+.badge-pago-pendiente{background:rgba(161,124,60,.18);color:#e0bd7c;border:1px solid rgba(201,162,74,.4);}
+
+.btn-pagar-cita{
+    background:transparent;
+    border:1px solid var(--gold-dim);
+    color:var(--gold-light);
+    font-size:.75rem;
+    padding:5px 12px;
+    border-radius:20px;
+    letter-spacing:.5px;
+    transition:.3s;
+}
+.btn-pagar-cita:hover{
+    background:var(--gold);
+    color:var(--black);
+    border-color:var(--gold);
+}
+
+.btn-del{
+    background:transparent;
+    border:1px solid rgba(161,60,60,.4);
+    color:#e0a5a5;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    font-size:.8rem;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    transition:.3s;
+}
+.btn-del:hover{
+    background:var(--danger);
+    color:white;
+    border-color:var(--danger);
+}
+.btn-del:disabled{
+    opacity:.35;
+    cursor:not-allowed;
+}
+
+.empty-state{
+    text-align:center;
+    padding:30px 10px;
+    color:var(--ash);
+}
+.empty-state i{
+    font-size:1.8rem;
+    color:var(--gold-dim);
+    display:block;
+    margin-bottom:10px;
+}
+.empty-state p{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.1rem;
+}
+
+/* ---------- MODAL DE PAGO ---------- */
+.modal-content{
+    background:linear-gradient(165deg, var(--charcoal-2), var(--charcoal));
+    border:1px solid rgba(201,162,74,.25);
+    color:var(--cream);
+    border-radius:6px;
+}
+.modal-header, .modal-footer{
+    border-color:rgba(201,162,74,.15);
+}
+.modal-title{
+    color:var(--gold-light);
+    font-family:'Cinzel', serif;
+    font-weight:600;
+}
+.btn-close{
+    filter:invert(1) grayscale(100%) brightness(1.6);
+}
+
+.resumen-pago{
+    background:var(--charcoal-3);
+    border:1px solid rgba(201,162,74,.15);
+    border-radius:4px;
+    padding:16px 18px;
+    margin-bottom:18px;
+}
+.resumen-pago .fila{
+    display:flex;
+    justify-content:space-between;
+    padding:5px 0;
+    font-size:.92rem;
+    color:var(--ash);
+}
+.resumen-pago .fila span:last-child{
+    color:var(--cream);
+    font-weight:500;
+}
+.resumen-pago .fila.total{
+    border-top:1px solid rgba(201,162,74,.2);
+    margin-top:8px;
+    padding-top:10px;
+    font-size:1.05rem;
+}
+.resumen-pago .fila.total span{
+    color:var(--gold-light) !important;
+    font-weight:700;
+}
+
+.metodo-pago{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:var(--charcoal-3);
+    border:1px solid rgba(201,162,74,.15);
+    border-radius:4px;
+    padding:12px 16px;
+    margin-bottom:10px;
+    cursor:pointer;
+    transition:.25s;
+}
+.metodo-pago:hover{
+    border-color:rgba(201,162,74,.4);
+}
+.metodo-pago.selected{
+    border-color:var(--gold);
+    background:rgba(201,162,74,.08);
+}
+.metodo-pago i{
+    color:var(--gold);
+    font-size:1.2rem;
+    width:22px;
+    text-align:center;
+}
+.metodo-pago .nombre{
+    color:var(--cream);
+    font-weight:500;
+    flex:1;
+}
+.metodo-pago .check{
+    color:var(--gold);
+    opacity:0;
+    transition:.2s;
+}
+.metodo-pago.selected .check{
+    opacity:1;
+}
+
+.aviso-wompi{
+    background:rgba(201,162,74,.08);
+    border:1px solid rgba(201,162,74,.25);
+    color:var(--gold-light);
+    font-size:.78rem;
+    padding:10px 14px;
+    border-radius:4px;
+    margin-top:14px;
+    line-height:1.5;
+}
+.aviso-wompi i{
+    margin-right:5px;
+}
+
+@media(max-width:767px){
+    .content{
+        padding:30px 20px;
+    }
+    .sidebar{
+        min-height:auto;
+        border-right:none;
+        border-bottom:1px solid rgba(201,162,74,.14);
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+<div class="row">
+
+<!-- ===================== -->
+<!-- SIDEBAR -->
+<!-- ===================== -->
+
+<div class="col-md-3 sidebar">
+
+    <div class="sidebar-brand fade-in">
+        <i class="bi bi-scissors"></i>
+        Élite del Estilo
+    </div>
+
+    <hr>
+
+    <div class="text-center mb-4 fade-in fade-in-1">
+
+        <div class="avatar" id="avatar"></div>
+        <h5 id="nombre"></h5>
+        <div class="sidebar-user-tag">Cliente Élite</div>
+
+    </div>
+
+    <button class="nav-btn active fade-in fade-in-2" onclick="irInicio()">
+        <i class="bi bi-house-door"></i> Inicio
+    </button>
+
+    <button class="nav-btn fade-in fade-in-2" onclick="document.getElementById('reservaCard').scrollIntoView({behavior:'smooth'})">
+        <i class="bi bi-calendar2-check"></i> Mis citas
+    </button>
+
+    <button class="nav-btn danger fade-in fade-in-3" onclick="cerrarSesion()">
+        <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+    </button>
+
+</div>
+
+<!-- ===================== -->
+<!-- CONTENIDO -->
+<!-- ===================== -->
+
+<div class="col-md-9 content">
+
+    <span class="page-eyebrow fade-in">Bienvenido de nuevo</span>
+    <h2 class="page-title fade-in fade-in-1">Panel del Cliente</h2>
+
+    <!-- CARDS INFO -->
+    <div class="row">
+
+        <div class="col-md-4 fade-in fade-in-2">
+            <div class="card stat-card">
+                <i class="bi bi-calendar3"></i>
+                <h5>Total Citas</h5>
+                <h2 id="totalCitas">0</h2>
+            </div>
+        </div>
+
+        <div class="col-md-4 fade-in fade-in-3">
+            <div class="card stat-card">
+                <i class="bi bi-person-badge"></i>
+                <h5>Usuario</h5>
+                <h4 id="usuarioCard" style="color:var(--gold-light); margin-top:8px;"></h4>
+            </div>
+        </div>
+
+        <div class="col-md-4 fade-in fade-in-4">
+            <div class="card stat-card status">
+                <i class="bi bi-patch-check"></i>
+                <h5>Estado</h5>
+                <h4>Activo</h4>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- RESERVA -->
+    <div class="card mt-3 fade-in fade-in-4" id="reservaCard">
+
+        <div class="card-title-row">
+            <i class="bi bi-gem"></i>
+            <h4>Reservar Cita</h4>
+        </div>
+        <p class="card-subtext">Elige tu servicio, tu barbero y el momento perfecto.</p>
+
+        <label class="form-label-gold">Servicio</label>
+        <select id="servicio" class="form-select"></select>
+
+        <label class="form-label-gold">Barbero</label>
+        <select id="barbero" class="form-select"></select>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label-gold">Fecha</label>
+                <input type="date" id="fecha" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label-gold">Hora</label>
+                <input type="time" id="hora" class="form-control">
+            </div>
+        </div>
+
+        <button class="btn btn-gold mt-4 w-100" onclick="reservar()">
+            <i class="bi bi-check2-circle me-1"></i> Continuar al Pago
+        </button>
+
+    </div>
+
+    <!-- HISTORIAL -->
+    <div class="card fade-in fade-in-5">
+
+        <div class="card-title-row">
+            <i class="bi bi-clock-history"></i>
+            <h4>Historial de Citas</h4>
+        </div>
+        <p class="card-subtext">Tus reservas anteriores y próximas.</p>
+
+        <ul id="lista" class="lista mt-2"></ul>
+
+    </div>
+
+</div>
+
+</div>
+</div>
+
+<!-- ===================== -->
+<!-- MODAL DE PAGO -->
+<!-- ===================== -->
+
+<div class="modal fade" id="modalPago" tabindex="-1" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="bi bi-credit-card-2-front me-2"></i>Pagar Servicio</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="resumen-pago" id="resumenPago"></div>
+
+        <label class="form-label-gold">Método de pago</label>
+
+        <div class="metodo-pago selected" data-metodo="wompi" onclick="seleccionarMetodo('wompi')">
+            <i class="bi bi-shield-check"></i>
+            <span class="nombre">Pago en línea seguro (Wompi)</span>
+            <i class="bi bi-check-circle-fill check"></i>
+        </div>
+
+        <div class="metodo-pago" data-metodo="efectivo" onclick="seleccionarMetodo('efectivo')">
+            <i class="bi bi-cash-coin"></i>
+            <span class="nombre">Pagar en el local</span>
+            <i class="bi bi-check-circle-fill check"></i>
+        </div>
+
+        <div class="aviso-wompi">
+            <i class="bi bi-info-circle"></i>
+            El pago en línea se procesa directamente en la plataforma segura de Wompi. Nosotros no almacenamos datos de tu tarjeta.
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-gold" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-gold" id="btnConfirmarPago" onclick="confirmarPago()">
+            <i class="bi bi-lock-fill me-1"></i> Confirmar Pago
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+
+/* ======================
+   CONFIGURACIÓN WOMPI
+   ====================== */
+
+// 🔑 Reemplaza con tu llave pública real de Wompi.
+// Sandbox/pruebas: empieza con "pub_test_..."
+// Producción: empieza con "pub_prod_..."
+const WOMPI_PUBLIC_KEY = "pub_test_TU_LLAVE_AQUI";
+
+// Usa "https://production.wompi.co/v1" cuando pases a producción con llave pub_prod_
+const WOMPI_API_BASE = "https://sandbox.wompi.co/v1";
+
+const estadoTexto = {
+    pendiente:"Pendiente", confirmada:"Confirmada", en_proceso:"En proceso",
+    finalizada:"Finalizada", cancelada:"Cancelada", no_asistio:"No asistió"
+};
+
+// ======================
+// USUARIO
+// ======================
+
+function getSesion(){
+    const raw = localStorage.getItem("usuario");
+    if(!raw) return null;
+    try{
+        return JSON.parse(raw);
+    }catch(e){
+        // Compatibilidad por si la sesión se guardó como texto plano en versiones antiguas
+        return { usuario: raw, rol: "cliente" };
+    }
+}
+
+let sesion = getSesion();
+
+if(!sesion){
+    window.location.href = "login.html";
+}
+
+let usuario = sesion.nombre || sesion.usuario || sesion.correo;
+
+document.getElementById("nombre").innerText = usuario;
+document.getElementById("usuarioCard").innerText = usuario;
+document.getElementById("avatar").innerText = usuario.charAt(0).toUpperCase();
+
+// ======================
+// SERVICIOS Y BARBEROS (comparten datos con el panel de administrador)
+// ======================
+
+function getServicios(){
+    let s = JSON.parse(localStorage.getItem("servicios"));
+    if(!s){
+        s = [
+            {id:1, nombre:"Corte", precio:25000, duracion:30, activo:true},
+            {id:2, nombre:"Fade", precio:35000, duracion:40, activo:true},
+            {id:3, nombre:"Barba", precio:20000, duracion:20, activo:true},
+            {id:4, nombre:"Cejas", precio:10000, duracion:10, activo:true},
+            {id:5, nombre:"Premium", precio:45000, duracion:60, activo:true}
+        ];
+        localStorage.setItem("servicios", JSON.stringify(s));
+    }
+    return s;
+}
+
+function getBarberos(){
+    let b = JSON.parse(localStorage.getItem("barberos"));
+    if(!b){
+        b = [
+            {id:1, nombre:"Julián Restrepo", especialidad:"Fades", activo:true, horariosBloqueados:[]},
+            {id:2, nombre:"Andrés Gómez", especialidad:"Barbas clásicas", activo:true, horariosBloqueados:[]},
+            {id:3, nombre:"Camilo Vargas", especialidad:"Diseños y líneas", activo:true, horariosBloqueados:[]},
+            {id:4, nombre:"Santiago Molina", especialidad:"Cortes ejecutivos", activo:true, horariosBloqueados:[]}
+        ];
+        localStorage.setItem("barberos", JSON.stringify(b));
+    }
+    return b;
+}
+
+function poblarSelects(){
+    const selectServicio = document.getElementById("servicio");
+    const selectBarbero = document.getElementById("barbero");
+
+    const servicios = getServicios().filter(s=>s.activo);
+    const barberos = getBarberos().filter(b=>b.activo);
+
+    selectServicio.innerHTML = servicios.length
+        ? servicios.map(s => `<option value="${s.nombre} - ${s.precio}">${s.nombre} — $${s.precio.toLocaleString('es-CO')}</option>`).join("")
+        : `<option value="">No hay servicios disponibles</option>`;
+
+    selectBarbero.innerHTML = barberos.length
+        ? barberos.map(b => `<option value="${b.nombre}">${b.nombre}</option>`).join("")
+        : `<option value="">No hay barberos disponibles</option>`;
+
+    // Preseleccionar el barbero elegido en el sitio principal, si sigue activo
+    let barberoElegido = localStorage.getItem("barberoElegido");
+    if(barberoElegido){
+        for(let opt of selectBarbero.options){
+            if(opt.value === barberoElegido){
+                selectBarbero.value = barberoElegido;
+                break;
+            }
+        }
+    }
+}
+
+poblarSelects();
+
+// ======================
+// CITAS (con migración defensiva de datos antiguos)
+// ======================
+
+function getCitas(){
+    let citas = JSON.parse(localStorage.getItem("citas")) || [];
+    let cambiado = false;
+
+    citas.forEach(c=>{
+        if(!c.id){ c.id = Date.now() + Math.floor(Math.random()*100000); cambiado = true; }
+        if(!c.estado){ c.estado = "pendiente"; cambiado = true; }
+        if(c.precio === undefined || c.precio === null){
+            c.precio = parseInt((c.servicio||"").split(' - ')[1]) || 0;
+            cambiado = true;
+        }
+        if(!c.pago){
+            c.pago = { metodo:"efectivo", estado:"pendiente", fechaPago:null };
+            cambiado = true;
+        }
+    });
+
+    if(cambiado) localStorage.setItem("citas", JSON.stringify(citas));
+    return citas;
+}
+function setCitas(c){ localStorage.setItem("citas", JSON.stringify(c)); }
+
+function cargar(){
+    let todas = getCitas();
+    // Solo se muestran las citas del cliente que inició sesión
+    let citas = todas.filter(c => c.cliente === usuario);
+
+    document.getElementById("totalCitas").innerText = citas.length;
+
+    citas.sort((a,b)=> (b.fecha+b.hora).localeCompare(a.fecha+a.hora));
+
+    let lista = document.getElementById("lista");
+    lista.innerHTML = "";
+
+    if(citas.length === 0){
+        lista.innerHTML = `
+        <li style="justify-content:center; background:transparent; border-style:dashed;">
+            <div class="empty-state" style="width:100%;">
+                <i class="bi bi-calendar-x"></i>
+                <p>Aún no tienes citas reservadas.</p>
+            </div>
+        </li>`;
+        return;
+    }
+
+    citas.forEach((cita)=>{
+
+        const puedeEliminar = cita.estado !== "finalizada";
+        const pago = cita.pago || { estado:"pendiente", metodo:"efectivo" };
+        const pagoTexto = pago.estado === "pagado" ? "Pagado" : "Pago pendiente";
+        const pagoClase = pago.estado === "pagado" ? "badge-pago-pagado" : "badge-pago-pendiente";
+
+        const btnPagar = pago.estado !== "pagado"
+            ? `<button class="btn-pagar-cita" onclick="pagarCitaExistente(${cita.id})">
+                 <i class="bi bi-credit-card me-1"></i>Pagar
+               </button>`
+            : "";
+
+        lista.innerHTML += `
+        <li>
+            <div class="cita-info">
+                <i class="bi bi-scissors"></i>
+                <div>
+                    <div class="cita-servicio">${cita.servicio.split(' - ')[0]} con ${cita.barbero}</div>
+                    <div class="cita-detalle">${cita.fecha} — ${cita.hora} · $${(cita.precio||0).toLocaleString('es-CO')}</div>
+                </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                <span class="badge-estado badge-${cita.estado}">${estadoTexto[cita.estado] || cita.estado}</span>
+                <span class="badge-pago ${pagoClase}">${pagoTexto}</span>
+                ${btnPagar}
+                <button class="btn-del" ${puedeEliminar ? '' : 'disabled title="No se puede eliminar una cita finalizada"'} onclick="eliminar(${cita.id})">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+        </li>`;
+    });
+}
+
+cargar();
+
+// ======================
+// FLUJO DE RESERVA + PAGO
+// ======================
+
+let reservaPendiente = null;
+let metodoSeleccionado = "wompi";
+let modalPagoEl = null;
+
+function getModalPago(){
+    if(!modalPagoEl){
+        modalPagoEl = new bootstrap.Modal(document.getElementById('modalPago'));
+    }
+    return modalPagoEl;
+}
+
+function reservar(){
+
+    let servicioSelect = document.getElementById("servicio");
+    let servicio = servicioSelect.value;
+    let servicioNombre = servicioSelect.options[servicioSelect.selectedIndex]
+        ? servicioSelect.options[servicioSelect.selectedIndex].text
+        : "";
+    let barbero = document.getElementById("barbero").value;
+    let fecha = document.getElementById("fecha").value;
+    let hora = document.getElementById("hora").value;
+
+    if(!servicio || !barbero){
+        alert("No hay servicios o barberos disponibles en este momento. Intenta más tarde.");
+        return;
+    }
+
+    if(!fecha || !hora){
+        alert("Completa los campos de fecha y hora.");
+        return;
+    }
+
+    const hoy = new Date().toISOString().split('T')[0];
+    if(fecha < hoy){
+        alert("La fecha no puede ser anterior a hoy.");
+        return;
+    }
+
+    const precio = parseInt(servicio.split(' - ')[1]) || 0;
+
+    // Se guarda temporalmente hasta que se confirme el pago
+    reservaPendiente = { servicio, servicioNombre, barbero, fecha, hora, precio };
+
+    mostrarResumenPago();
+    seleccionarMetodo("wompi");
+
+    getModalPago().show();
+}
+
+function pagarCitaExistente(id){
+
+    let citas = getCitas();
+    const cita = citas.find(c => c.id === id);
+    if(!cita) return;
+
+    reservaPendiente = {
+        servicio: cita.servicio,
+        servicioNombre: cita.servicio.split(' - ')[0],
+        barbero: cita.barbero,
+        fecha: cita.fecha,
+        hora: cita.hora,
+        precio: cita.precio,
+        _citaId: id
+    };
+
+    mostrarResumenPago();
+    seleccionarMetodo("wompi");
+
+    getModalPago().show();
+}
+
+function mostrarResumenPago(){
+    const r = reservaPendiente;
+    document.getElementById('resumenPago').innerHTML = `
+        <div class="fila"><span>Servicio</span><span>${r.servicioNombre.split(' — ')[0]}</span></div>
+        <div class="fila"><span>Barbero</span><span>${r.barbero}</span></div>
+        <div class="fila"><span>Fecha</span><span>${r.fecha} — ${r.hora}</span></div>
+        <div class="fila total"><span>Total a pagar</span><span>$${r.precio.toLocaleString('es-CO')}</span></div>
+    `;
+}
+
+function seleccionarMetodo(metodo){
+    metodoSeleccionado = metodo;
+    document.querySelectorAll('.metodo-pago').forEach(el=>{
+        el.classList.toggle('selected', el.dataset.metodo === metodo);
+    });
+}
+
+function confirmarPago(){
+
+    if(metodoSeleccionado === 'efectivo'){
+        guardarCita({
+            metodo: "efectivo",
+            estado: "pendiente",
+            fechaPago: null
+        });
+        return;
+    }
+
+    // ---- Pago en línea con Wompi ----
+    if(typeof WidgetCheckout === "undefined"){
+        alert("No se pudo cargar el widget de pagos. Revisa tu conexión e intenta de nuevo.");
+        return;
+    }
+
+    const referencia = "cita-" + Date.now();
+    const montoEnCentavos = reservaPendiente.precio * 100;
+
+    const checkout = new WidgetCheckout({
+        currency: 'COP',
+        amountInCents: montoEnCentavos,
+        reference: referencia,
+        publicKey: WOMPI_PUBLIC_KEY
+        // 🔌 Cuando tengas backend, agrega aquí:
+        // signature: { integrity: "<hash generado en servidor>" }
+    });
+
+    const btn = document.getElementById('btnConfirmarPago');
+    btn.disabled = true;
+    btn.innerHTML = `<span class="spinner-border spinner-border-sm me-1"></span> Abriendo pago...`;
+
+    checkout.open(function (result){
+
+        btn.disabled = false;
+        btn.innerHTML = `<i class="bi bi-lock-fill me-1"></i> Confirmar Pago`;
+
+        const transaction = result.transaction;
+
+        if(!transaction){
+            alert("El pago fue cancelado.");
+            return;
+        }
+
+        verificarTransaccionWompi(transaction.id);
+    });
+}
+
+function verificarTransaccionWompi(id){
+
+    fetch(`${WOMPI_API_BASE}/transactions/${id}`)
+        .then(r => r.json())
+        .then(data => {
+
+            const estado = data.data.status; // APPROVED, DECLINED, PENDING, ERROR
+
+            if(estado === "APPROVED"){
+                guardarCita({
+                    metodo: "wompi",
+                    estado: "pagado",
+                    fechaPago: new Date().toISOString(),
+                    transaccionId: id
+                });
+            } else if(estado === "PENDING"){
+                alert("Tu pago está pendiente de confirmación. Revisa el historial más tarde.");
+                guardarCita({
+                    metodo: "wompi",
+                    estado: "pendiente",
+                    fechaPago: null,
+                    transaccionId: id
+                });
+            } else {
+                alert("El pago no se completó (estado: " + estado + "). Intenta de nuevo.");
+            }
+        })
+        .catch(()=>{
+            alert("No se pudo verificar el pago. Si te realizaron un cobro, contáctanos con este ID: " + id);
+        });
+}
+
+function guardarCita(registroPago){
+
+    let citas = getCitas();
+
+    if(reservaPendiente._citaId){
+        const cita = citas.find(c => c.id === reservaPendiente._citaId);
+        if(cita) cita.pago = registroPago;
+    } else {
+        citas.push({
+            id: Date.now(),
+            cliente: usuario,
+            servicio: reservaPendiente.servicio,
+            barbero: reservaPendiente.barbero,
+            fecha: reservaPendiente.fecha,
+            hora: reservaPendiente.hora,
+            estado: "pendiente",
+            precio: reservaPendiente.precio,
+            pago: registroPago
+        });
+    }
+
+    setCitas(citas);
+
+    document.getElementById("fecha").value = "";
+    document.getElementById("hora").value = "";
+
+    getModalPago().hide();
+    reservaPendiente = null;
+
+    cargar();
+}
+
+// ======================
+// ELIMINAR
+// ======================
+
+function eliminar(id){
+
+    let citas = getCitas();
+    const cita = citas.find(c => c.id === id);
+
+    if(cita && cita.estado === "finalizada"){
+        alert("No se puede eliminar una cita ya finalizada.");
+        return;
+    }
+
+    if(!confirm("¿Deseas cancelar esta cita?")) return;
+
+    citas = citas.filter(c => c.id !== id);
+
+    setCitas(citas);
+
+    cargar();
+}
+
+// ======================
+// SALIR
+// ======================
+
+function cerrarSesion(){
+    localStorage.removeItem("usuario");
+    window.location.href = "login.html";
+}
+
+// ======================
+// INICIO
+// ======================
+
+function irInicio(){
+    window.location.href = "barberia.html";
+}
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,700 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Crear Cuenta | Barbería Élite del Estilo</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html, body{
+    height:auto;
+    min-height:100%;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    background:
+        repeating-linear-gradient(135deg, rgba(212,175,55,.035) 0px, rgba(212,175,55,.035) 1px, transparent 1px, transparent 26px),
+        linear-gradient(135deg,#0a0a0a,#161616,#000);
+    background-attachment:fixed;
+    overflow-y:auto;
+    overflow-x:hidden;
+    position:relative;
+    padding:40px 0;
+}
+
+body::before{
+    content:"";
+    position:absolute;
+    width:480px;
+    height:480px;
+    background:#d4af37;
+    border-radius:50%;
+    top:-200px;
+    right:-160px;
+    filter:blur(150px);
+    opacity:.28;
+}
+
+body::after{
+    content:"";
+    position:absolute;
+    width:380px;
+    height:380px;
+    background:#d4af37;
+    border-radius:50%;
+    bottom:-190px;
+    left:-130px;
+    filter:blur(150px);
+    opacity:.2;
+}
+
+.login-box{
+    width:100%;
+    max-width:480px;
+    padding:20px;
+    position:relative;
+    z-index:2;
+}
+
+.login-card{
+    background:rgba(255,255,255,.06);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(212,175,55,.35);
+    border-radius:26px;
+    padding:44px 40px;
+    box-shadow:0 25px 70px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.06);
+    position:relative;
+    overflow:hidden;
+}
+
+.login-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:3px;
+    background:linear-gradient(90deg,transparent,#d4af37,#FFD700,#d4af37,transparent);
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.logo img{
+    width:110px;
+    height:110px;
+    object-fit:contain;
+    background:#fff;
+    border-radius:50%;
+    padding:10px;
+    border:2px solid #d4af37;
+    box-shadow:0 8px 30px rgba(212,175,55,.35);
+    transition:.4s;
+}
+
+.logo img:hover{
+    transform:scale(1.05) rotate(3deg);
+}
+
+.eyebrow{
+    display:inline-block;
+    color:#d4af37;
+    font-size:11px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:600;
+    margin-top:16px;
+}
+
+.logo h1{
+    font-family:'Playfair Display',serif;
+    color:#fff;
+    font-size:27px;
+    font-weight:800;
+    margin-top:6px;
+    letter-spacing:.5px;
+}
+
+.logo p{
+    color:#bdbdbd;
+    margin-top:6px;
+    font-size:14px;
+}
+
+.form-label{
+    color:#e8e8e8;
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+    margin-bottom:8px;
+    display:block;
+}
+
+.input-group{
+    margin-bottom:18px;
+}
+
+.input-group-text{
+    background:#171717;
+    color:#d4af37;
+    border:2px solid rgba(212,175,55,.5);
+    border-right:none;
+    border-radius:12px 0 0 12px;
+}
+
+.form-control, .form-select{
+    background:#171717 !important;
+    color:#fff !important;
+    border:2px solid rgba(212,175,55,.5);
+    border-left:none;
+    padding:14px;
+    border-radius:0 12px 12px 0;
+    font-size:15px;
+    transition:.3s;
+}
+
+.form-control::placeholder{
+    color:#8a8a8a;
+    font-weight:300;
+}
+
+.form-control:focus, .form-select:focus{
+    background:#1e1e1e !important;
+    color:#fff !important;
+    border-color:#FFD700;
+    box-shadow:0 0 18px rgba(255,215,0,.3);
+}
+
+.form-control.is-invalid{
+    border-color:#ff4d4d;
+}
+
+/* Evita que el autocompletado del navegador rompa el diseño oscuro */
+.form-control:-webkit-autofill,
+.form-control:-webkit-autofill:hover,
+.form-control:-webkit-autofill:focus{
+    -webkit-box-shadow:0 0 0px 1000px #171717 inset !important;
+    -webkit-text-fill-color:#fff !important;
+    caret-color:#fff;
+    transition:background-color 9999s ease-in-out 0s;
+}
+
+.password-box{
+    position:relative;
+}
+
+.eye{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#d4af37;
+    cursor:pointer;
+    font-size:19px;
+    z-index:5;
+}
+
+.row-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.form-check-label{
+    color:#ccc;
+    font-size:13px;
+}
+
+.form-check-input{
+    border:2px solid #d4af37;
+}
+
+.form-check-input:checked{
+    background:#d4af37;
+    border-color:#d4af37;
+}
+
+.form-check-label a{
+    color:#FFD700;
+    text-decoration:none;
+}
+.form-check-label a:hover{
+    text-decoration:underline;
+}
+
+.btn-login{
+    width:100%;
+    background:linear-gradient(45deg,#d4af37,#FFD700);
+    color:#111;
+    font-weight:700;
+    letter-spacing:.5px;
+    border:none;
+    border-radius:12px;
+    padding:14px;
+    font-size:16px;
+    text-transform:uppercase;
+    transition:.35s;
+    margin-top:8px;
+}
+
+.btn-login:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 28px rgba(212,175,55,.5);
+}
+
+.btn-login:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+    transform:none;
+    box-shadow:none;
+}
+
+.register{
+    text-align:center;
+    margin-top:22px;
+    color:#ccc;
+    font-size:14px;
+}
+
+.register a{
+    color:#FFD700;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.register a:hover{
+    text-decoration:underline;
+}
+.back{
+    text-align:center;
+    margin-top:16px;
+}
+.back a{
+    color:#888;
+    text-decoration:none;
+    font-size:13px;
+}
+.back a:hover{
+    color:#FFD700;
+}
+
+.alert-login{
+    display:none;
+    margin-bottom:20px;
+    border-radius:12px;
+    font-size:14px;
+    padding:12px 15px;
+}
+
+.alert-success-custom{
+    display:none;
+    margin-bottom:20px;
+    border-radius:12px;
+    font-size:14px;
+    padding:12px 15px;
+}
+
+.hint{
+    color:#888;
+    font-size:12px;
+    margin-top:-12px;
+    margin-bottom:18px;
+    padding-left:2px;
+}
+
+@media(max-width:480px){
+.login-card{
+padding:32px 22px;
+}
+.logo img{
+width:95px;
+height:95px;
+}
+.logo h1{
+font-size:22px;
+}
+.row-2{
+grid-template-columns:1fr;
+gap:0;
+}
+}
+
+</style>
+</head>
+<body>
+<div class="login-box">
+<div class="login-card">
+<div class="logo">
+<img src="https://i.ibb.co/ksnQRFq5/logo.jpg" alt="Logo Barbería">
+<div class="eyebrow">Nuevo cliente</div>
+<h1>Crear Cuenta</h1>
+<p>Únete a la Barbería Élite del Estilo</p>
+</div>
+
+<div class="alert alert-danger alert-login" id="alertaError">
+<i class="bi bi-exclamation-triangle-fill"></i>
+<span id="mensajeError">Por favor completa todos los campos.</span>
+</div>
+
+<div class="alert alert-success alert-success-custom" id="alertaExito">
+<i class="bi bi-check-circle-fill"></i>
+<span id="mensajeExito">Cuenta creada con éxito. Redirigiendo al inicio de sesión...</span>
+</div>
+
+<form id="formRegistro" autocomplete="off">
+
+<label class="form-label">Nombre completo</label>
+<div class="input-group">
+<span class="input-group-text"><i class="bi bi-person-vcard-fill"></i></span>
+<input type="text" id="nombre" class="form-control" placeholder="Ingresa tu nombre completo" required>
+</div>
+
+<label class="form-label">Nombre de usuario</label>
+<div class="input-group">
+<span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+<input type="text" id="usuario" class="form-control" placeholder="Elige un nombre de usuario" required>
+</div>
+
+<label class="form-label">Correo electrónico</label>
+<div class="input-group">
+<span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+<input type="email" id="email" class="form-control" placeholder="Ingresa tu correo" required>
+</div>
+
+<label class="form-label">Teléfono</label>
+<div class="input-group">
+<span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
+<input type="tel" id="telefono" class="form-control" placeholder="Ingresa tu número de teléfono" required>
+</div>
+
+<label class="form-label">Fecha de nacimiento</label>
+<div class="input-group">
+<span class="input-group-text"><i class="bi bi-calendar-event-fill"></i></span>
+<input type="date" id="nacimiento" class="form-control" required>
+</div>
+
+<label class="form-label">Contraseña</label>
+<div class="password-box mb-3">
+<input type="password" id="password" class="form-control" placeholder="Crea una contraseña" required>
+<i class="bi bi-eye-fill eye" onclick="mostrarPassword('password', this)"></i>
+</div>
+
+<label class="form-label">Confirmar contraseña</label>
+<div class="password-box mb-2">
+<input type="password" id="password2" class="form-control" placeholder="Repite tu contraseña" required>
+<i class="bi bi-eye-fill eye" onclick="mostrarPassword('password2', this)"></i>
+</div>
+<div class="hint">Usa al menos 4 caracteres.</div>
+
+<label class="form-label">Código de administrador <span style="text-transform:none; font-weight:400; color:#888;">(opcional)</span></label>
+<div class="input-group">
+<span class="input-group-text"><i class="bi bi-shield-lock-fill"></i></span>
+<input type="text" id="codigoAdmin" class="form-control" placeholder="Solo para personal autorizado">
+</div>
+<div class="hint">Déjalo vacío si te estás registrando como cliente.</div>
+
+<label class="form-label">Código de barbero <span style="text-transform:none; font-weight:400; color:#888;">(opcional)</span></label>
+<div class="input-group">
+<span class="input-group-text"><i class="bi bi-scissors"></i></span>
+<input type="text" id="codigoBarbero" class="form-control" placeholder="Solo para barberos de la casa">
+</div>
+<div class="hint">Si tienes el código, selecciona abajo cuál de los barberos registrados eres.</div>
+
+<div class="input-group">
+<span class="input-group-text"><i class="bi bi-person-badge-fill"></i></span>
+<select id="barberoAsociado" class="form-select">
+    <option value="">Selecciona tu perfil de barbero…</option>
+</select>
+</div>
+<div class="hint">Usa solo un código de acceso: el de administrador o el de barbero, no ambos.</div>
+
+<div class="form-check mb-3">
+<input class="form-check-input" type="checkbox" id="terminos">
+<label class="form-check-label" for="terminos">
+Acepto los <a href="#">términos y condiciones</a>
+</label>
+</div>
+
+<button type="button" class="btn btn-login" id="btnRegistro">
+    <i class="bi bi-person-plus-fill"></i>
+    Crear Cuenta
+</button>
+
+</form>
+
+<div class="register">
+¿Ya tienes cuenta?
+<a href="login.html">Iniciar sesión</a>
+</div>
+
+<div class="back">
+<a href="barberia.html">
+← Volver al inicio
+</a>
+</div>
+
+</div>
+</div>
+<script>
+
+// Código secreto que habilita el rol de administrador al registrarse.
+// Cámbialo por uno propio y compártelo solo con el personal autorizado.
+const CODIGO_ADMINISTRADOR = "ELITE-ADMIN-2026";
+
+// Código secreto que habilita el rol de barbero al registrarse.
+const CODIGO_BARBERO = "ELITE-BARBER-2026";
+
+// Los barberos se comparten con el panel de administrador (misma clave de localStorage).
+function getBarberos(){
+    let b = JSON.parse(localStorage.getItem("barberos"));
+    if(!b){
+        b = [
+            {id:1, nombre:"Julián Restrepo", especialidad:"Fades", activo:true, horariosBloqueados:[]},
+            {id:2, nombre:"Andrés Gómez", especialidad:"Barbas clásicas", activo:true, horariosBloqueados:[]},
+            {id:3, nombre:"Camilo Vargas", especialidad:"Diseños y líneas", activo:true, horariosBloqueados:[]},
+            {id:4, nombre:"Santiago Molina", especialidad:"Cortes ejecutivos", activo:true, horariosBloqueados:[]}
+        ];
+        localStorage.setItem("barberos", JSON.stringify(b));
+    }
+    return b;
+}
+
+(function poblarBarberos(){
+    const select = document.getElementById("barberoAsociado");
+    const registrados = JSON.parse(localStorage.getItem("usuariosRegistrados") || "[]");
+    const yaTomados = registrados.filter(u => u.rol === "barbero").map(u => u.barberoNombre);
+
+    getBarberos().forEach(b=>{
+        const ocupado = yaTomados.includes(b.nombre);
+        const opt = document.createElement("option");
+        opt.value = b.nombre;
+        opt.textContent = b.nombre + (ocupado ? " (ya tiene cuenta)" : "");
+        if(ocupado) opt.disabled = true;
+        select.appendChild(opt);
+    });
+})();
+
+function mostrarPassword(id, icono){
+    let input = document.getElementById(id);
+    if(input.type === "password"){
+        input.type = "text";
+        icono.classList.remove("bi-eye-fill");
+        icono.classList.add("bi-eye-slash-fill");
+    }else{
+        input.type = "password";
+        icono.classList.remove("bi-eye-slash-fill");
+        icono.classList.add("bi-eye-fill");
+    }
+}
+
+function mostrarError(mensaje){
+    const alerta = document.getElementById("alertaError");
+    document.getElementById("alertaExito").style.display = "none";
+    document.getElementById("mensajeError").textContent = mensaje;
+    alerta.style.display = "block";
+}
+
+function ocultarError(){
+    document.getElementById("alertaError").style.display = "none";
+}
+
+function validarEmail(correo){
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(correo);
+}
+
+document.getElementById("btnRegistro").addEventListener("click", async function () {
+
+    const campos = {
+        nombre: document.getElementById("nombre"),
+        usuario: document.getElementById("usuario"),
+        email: document.getElementById("email"),
+        telefono: document.getElementById("telefono"),
+        nacimiento: document.getElementById("nacimiento"),
+        password: document.getElementById("password"),
+        password2: document.getElementById("password2")
+    };
+
+    Object.values(campos).forEach(c => c.classList.remove("is-invalid"));
+    ocultarError();
+
+    const valores = {};
+    for (const clave in campos) {
+        valores[clave] = campos[clave].value.trim();
+    }
+
+    const codigoAdmin = document.getElementById("codigoAdmin").value.trim();
+    const codigoBarbero = document.getElementById("codigoBarbero").value.trim();
+    const barberoAsociado = document.getElementById("barberoAsociado").value;
+
+    // Validar campos obligatorios
+    let vacio = false;
+    for (const clave in campos) {
+        if (valores[clave] === "") {
+            campos[clave].classList.add("is-invalid");
+            vacio = true;
+        }
+    }
+    if (vacio) {
+        mostrarError("Por favor completa todos los campos.");
+        return;
+    }
+
+    if (!validarEmail(valores.email)) {
+        campos.email.classList.add("is-invalid");
+        mostrarError("Ingresa un correo electrónico válido.");
+        return;
+    }
+
+    if (valores.password.length < 4) {
+        campos.password.classList.add("is-invalid");
+        mostrarError("La contraseña debe tener al menos 4 caracteres.");
+        return;
+    }
+
+    if (valores.password !== valores.password2) {
+        campos.password.classList.add("is-invalid");
+        campos.password2.classList.add("is-invalid");
+        mostrarError("Las contraseñas no coinciden.");
+        return;
+    }
+
+    if (!document.getElementById("terminos").checked) {
+        mostrarError("Debes aceptar los términos y condiciones.");
+        return;
+    }
+
+    if (codigoAdmin !== "" && codigoAdmin !== CODIGO_ADMINISTRADOR) {
+        document.getElementById("codigoAdmin").classList.add("is-invalid");
+        mostrarError("El código de administrador no es válido.");
+        return;
+    }
+
+    if (codigoBarbero !== "" && codigoBarbero !== CODIGO_BARBERO) {
+        document.getElementById("codigoBarbero").classList.add("is-invalid");
+        mostrarError("El código de barbero no es válido.");
+        return;
+    }
+
+    if (codigoAdmin !== "" && codigoBarbero !== "") {
+        mostrarError("Usa solo un código de acceso: el de administrador o el de barbero, no ambos.");
+        return;
+    }
+
+    const esAdministrador = codigoAdmin === CODIGO_ADMINISTRADOR && codigoAdmin !== "";
+    const esBarbero = codigoBarbero === CODIGO_BARBERO && codigoBarbero !== "";
+
+    if (esBarbero && !barberoAsociado) {
+        document.getElementById("barberoAsociado").classList.add("is-invalid");
+        mostrarError("Selecciona a cuál barbero corresponde esta cuenta.");
+        return;
+    }
+
+    // Evitar usuarios o correos duplicados (localStorage)
+    const registrados = JSON.parse(localStorage.getItem("usuariosRegistrados") || "[]");
+    const yaExiste = registrados.find(u => u.usuario === valores.usuario || u.correo === valores.email);
+    if (yaExiste) {
+        mostrarError("Ya existe una cuenta con ese usuario o correo.");
+        return;
+    }
+
+    if (esBarbero) {
+        const barberoOcupado = registrados.some(u => u.rol === "barbero" && u.barberoNombre === barberoAsociado);
+        if (barberoOcupado) {
+            mostrarError("Ese barbero ya tiene una cuenta creada. Elige otro o contacta al administrador.");
+            return;
+        }
+    }
+
+    const nuevoUsuario = {
+        nombre: valores.nombre,
+        usuario: valores.usuario,
+        correo: valores.email,
+        telefono: valores.telefono,
+        nacimiento: valores.nacimiento,
+        password: valores.password,
+        rol: esAdministrador ? "administrador" : (esBarbero ? "barbero" : "cliente"),
+        bloqueado: false
+    };
+    if (esBarbero) nuevoUsuario.barberoNombre = barberoAsociado;
+
+    const btn = document.getElementById("btnRegistro");
+    btn.disabled = true;
+
+    try {
+
+        // Por ahora enviamos al backend solo los campos que existen
+        // actualmente en la tabla USUARIO de PostgreSQL.
+        const respuesta = await fetch("http://localhost:3000/usuarios", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nombre: valores.nombre,
+                correo: valores.email,
+                contraseña: valores.password,
+                estado: "Activo"
+            })
+        });
+
+        const datos = await respuesta.json();
+
+        if (!respuesta.ok) {
+            console.error(datos);
+            mostrarError("No se pudo crear la cuenta en el servidor.");
+            btn.disabled = false;
+            return;
+        }
+
+        // Guardamos también en localStorage para que el panel de
+        // administrador y el sistema de roles/barberos sigan funcionando.
+        registrados.push(nuevoUsuario);
+        localStorage.setItem("usuariosRegistrados", JSON.stringify(registrados));
+
+        document.getElementById("mensajeExito").textContent = esAdministrador
+            ? "Cuenta de administrador creada con éxito. Redirigiendo al inicio de sesión..."
+            : esBarbero
+                ? "Cuenta de barbero creada con éxito. Redirigiendo al inicio de sesión..."
+                : "Cuenta creada con éxito. Redirigiendo al inicio de sesión...";
+
+        document.getElementById("alertaExito").style.display = "block";
+        document.getElementById("formRegistro").reset();
+
+        setTimeout(function () {
+            window.location.href = "login.html";
+        }, 1800);
+
+    } catch (error) {
+
+        console.error("Error:", error);
+        mostrarError("No se pudo conectar con el servidor. Verifica que Node.js esté funcionando.");
+        btn.disabled = false;
+    }
+
+});
+
+</script>
+</body>
+
+</html>

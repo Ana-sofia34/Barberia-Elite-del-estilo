@@ -1,0 +1,1124 @@
+ <!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Panel Administrador | Barbería Élite del Estilo</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --black:#0a0908;
+    --charcoal:#151210;
+    --charcoal-2:#1c1815;
+    --charcoal-3:#221d18;
+    --gold:#c9a24a;
+    --gold-light:#eeddab;
+    --gold-dim:#8a6f30;
+    --cream:#f3ecd9;
+    --ash:#9c9384;
+    --danger:#a13c3c;
+    --ok:#5b8a63;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--black);color:var(--cream);font-family:'Jost', sans-serif;min-height:100vh;}
+h1,h2,h3,h4,h5{font-family:'Cinzel', serif;}
+::selection{background:var(--gold);color:var(--black);}
+::-webkit-scrollbar{width:8px;}
+::-webkit-scrollbar-track{background:var(--black);}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:10px;}
+
+@keyframes fadeUp{from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);}}
+.fade-in{opacity:0; animation:fadeUp .7s cubic-bezier(.2,.7,.2,1) forwards;}
+.fade-in-1{animation-delay:.05s;} .fade-in-2{animation-delay:.15s;} .fade-in-3{animation-delay:.25s;} .fade-in-4{animation-delay:.35s;}
+
+.sidebar{
+    background:linear-gradient(180deg, var(--charcoal-2), var(--black));
+    min-height:100vh;padding:30px 24px;border-right:1px solid rgba(201,162,74,.14);
+}
+.sidebar-brand{color:var(--gold-light);font-weight:700;font-size:1.3rem;letter-spacing:1px;display:flex;align-items:center;gap:10px;}
+.sidebar-brand i{color:var(--gold);}
+.sidebar hr{border-color:rgba(201,162,74,.2);margin:22px 0;}
+
+.avatar{
+    width:88px;height:88px;border-radius:50%;
+    background:linear-gradient(135deg, var(--gold-dim), var(--gold) 55%, var(--gold-light));
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Cinzel', serif;font-size:1.9rem;font-weight:800;color:var(--black);
+    margin:auto;box-shadow:0 0 0 1px rgba(201,162,74,.3), 0 12px 26px rgba(0,0,0,.5);
+}
+#nombre{color:var(--gold-light);margin-top:14px;font-size:1.05rem;font-weight:600;letter-spacing:.5px;}
+.sidebar-user-tag{color:var(--ash);font-family:'Cormorant Garamond', serif;font-style:italic;font-size:.9rem;margin-top:2px;}
+
+.nav-btn{
+    display:flex;align-items:center;gap:10px;width:100%;text-align:left;
+    background:transparent;border:1px solid transparent;color:var(--cream);
+    padding:11px 14px;border-radius:3px;margin-bottom:8px;
+    font-family:'Jost', sans-serif;font-weight:500;letter-spacing:.3px;transition:.3s;
+}
+.nav-btn i{color:var(--gold-dim);font-size:1.05rem;transition:.3s;width:18px;}
+.nav-btn:hover{background:rgba(201,162,74,.08);border-color:rgba(201,162,74,.25);color:var(--gold-light);}
+.nav-btn:hover i{color:var(--gold);}
+.nav-btn.danger{margin-top:24px;border:1px solid rgba(161,60,60,.4);color:#e0a5a5;}
+.nav-btn.danger i{color:#c25c5c;}
+.nav-btn.danger:hover{background:rgba(161,60,60,.12);border-color:#c25c5c;color:#f0c4c4;}
+
+.content{padding:44px 40px;}
+.page-eyebrow{color:var(--gold);font-family:'Cormorant Garamond', serif;font-style:italic;letter-spacing:3px;text-transform:uppercase;font-size:.95rem;}
+.page-title{color:var(--gold-light);font-weight:700;font-size:2rem;letter-spacing:.5px;margin-top:4px;margin-bottom:30px;}
+
+.section-block{margin-bottom:40px;}
+.section-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+.section-heading-left{display:flex;align-items:center;gap:10px;}
+.section-heading i{color:var(--gold);font-size:1.15rem;}
+.section-heading h4{color:var(--gold-light);font-size:1.2rem;font-weight:600;}
+
+.card{
+    background:linear-gradient(165deg, var(--charcoal-2), var(--charcoal));
+    border:1px solid rgba(201,162,74,.14);border-radius:6px;padding:26px;
+    margin-bottom:22px;color:var(--cream);transition:.35s;
+}
+.card:hover{border-color:rgba(201,162,74,.32);}
+.card h5{color:var(--ash);font-family:'Jost', sans-serif;font-weight:500;font-size:.85rem;letter-spacing:1.5px;text-transform:uppercase;}
+.stat-card{text-align:center;}
+.stat-card h2{color:var(--gold-light);font-size:2.2rem;margin-top:8px;}
+.stat-card i{color:var(--gold-dim);font-size:1.4rem;margin-bottom:6px;display:block;}
+
+.form-control, .form-select{
+    background:var(--charcoal-3);border:1px solid rgba(201,162,74,.18);color:var(--cream);
+    border-radius:3px;padding:9px 12px;font-size:.9rem;
+}
+.form-control:focus, .form-select:focus{background:var(--charcoal-3);color:var(--cream);border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,162,74,.15);}
+.form-select option{background:var(--charcoal-2);color:var(--cream);}
+.form-label-gold{color:var(--ash);font-size:.75rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;display:block;}
+::placeholder{color:#6d6558;}
+
+.btn-gold{
+    font-family:'Jost',sans-serif;font-weight:600;letter-spacing:.5px;border-radius:3px;padding:9px 18px;
+    background:linear-gradient(120deg, var(--gold-dim), var(--gold) 45%, var(--gold-light) 55%, var(--gold));
+    background-size:220% auto;border:none;color:var(--black);transition:.4s;font-size:.85rem;
+}
+.btn-gold:hover{background-position:right center;transform:translateY(-2px);color:var(--black);box-shadow:0 8px 22px rgba(201,162,74,.35);}
+
+.btn-ghost{background:transparent;border:1px solid rgba(201,162,74,.35);color:var(--gold-light);border-radius:3px;padding:7px 14px;font-size:.78rem;transition:.3s;}
+.btn-ghost:hover{border-color:var(--gold);background:rgba(201,162,74,.08);}
+.btn-danger-ghost{background:transparent;border:1px solid rgba(161,60,60,.45);color:#e0a5a5;border-radius:3px;padding:7px 14px;font-size:.78rem;transition:.3s;}
+.btn-danger-ghost:hover{background:rgba(161,60,60,.15);border-color:#c25c5c;}
+.btn-ok-ghost{background:transparent;border:1px solid rgba(91,138,99,.5);color:#a9d3af;border-radius:3px;padding:7px 14px;font-size:.78rem;transition:.3s;}
+.btn-ok-ghost:hover{background:rgba(91,138,99,.15);border-color:var(--ok);}
+
+.table-custom{width:100%;border-collapse:collapse;margin-top:6px;}
+.table-custom th{color:var(--gold);font-size:.72rem;text-transform:uppercase;letter-spacing:1px;text-align:left;padding:10px 12px;border-bottom:1px solid rgba(201,162,74,.25);}
+.table-custom td{padding:11px 12px;border-bottom:1px solid rgba(201,162,74,.08);font-size:.87rem;color:var(--cream);vertical-align:middle;}
+.table-custom tr:hover td{background:rgba(201,162,74,.04);}
+
+.badge-estado{font-size:.68rem;letter-spacing:.5px;padding:4px 9px;border-radius:20px;font-weight:600;text-transform:uppercase;white-space:nowrap;}
+.badge-pendiente{background:rgba(161,124,60,.18);color:#e0bd7c;border:1px solid rgba(201,162,74,.4);}
+.badge-confirmada{background:rgba(90,140,200,.16);color:#a9c8ef;border:1px solid rgba(90,140,200,.4);}
+.badge-en_proceso{background:rgba(201,162,74,.2);color:var(--gold-light);border:1px solid var(--gold);}
+.badge-finalizada{background:rgba(91,138,99,.18);color:#a9d3af;border:1px solid rgba(91,138,99,.45);}
+.badge-cancelada{background:rgba(161,60,60,.16);color:#e0a5a5;border:1px solid rgba(161,60,60,.4);}
+.badge-no_asistio{background:rgba(120,120,120,.18);color:#c9c4bb;border:1px solid rgba(150,150,150,.35);}
+.badge-activo{background:rgba(91,138,99,.18);color:#a9d3af;border:1px solid rgba(91,138,99,.45);}
+.badge-bloqueado{background:rgba(161,60,60,.16);color:#e0a5a5;border:1px solid rgba(161,60,60,.4);}
+
+.badge-pago{font-size:.68rem;letter-spacing:.5px;padding:4px 9px;border-radius:20px;font-weight:600;text-transform:uppercase;white-space:nowrap;}
+.badge-pago-pagado{background:rgba(91,138,99,.18);color:#a9d3af;border:1px solid rgba(91,138,99,.45);}
+.badge-pago-pendiente{background:rgba(161,124,60,.18);color:#e0bd7c;border:1px solid rgba(201,162,74,.4);}
+
+.empty-state{text-align:center;padding:26px 10px;color:var(--ash);}
+.empty-state i{font-size:1.6rem;color:var(--gold-dim);display:block;margin-bottom:8px;}
+.empty-state p{font-family:'Cormorant Garamond', serif;font-style:italic;font-size:1.05rem;}
+
+.filtro-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.filtro-row select, .filtro-row input{max-width:200px;}
+
+.edit-box{border:1px solid rgba(201,162,74,.3); border-radius:6px;}
+
+@media(max-width:767px){
+    .content{padding:30px 20px;}
+    .sidebar{min-height:auto;border-right:none;border-bottom:1px solid rgba(201,162,74,.14);}
+    .table-custom{font-size:.78rem;}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+<div class="row">
+
+<div class="col-md-3 sidebar">
+
+    <div class="sidebar-brand fade-in">
+        <i class="bi bi-scissors"></i>
+        Élite del Estilo
+    </div>
+
+    <hr>
+
+    <div class="text-center mb-4 fade-in fade-in-1">
+        <div class="avatar" id="avatar"></div>
+        <h5 id="nombre"></h5>
+        <div class="sidebar-user-tag">Administrador</div>
+    </div>
+
+    <button class="nav-btn fade-in fade-in-2" onclick="document.getElementById('resumenCard').scrollIntoView({behavior:'smooth'})">
+        <i class="bi bi-speedometer2"></i> Resumen
+    </button>
+    <button class="nav-btn fade-in fade-in-2" onclick="document.getElementById('citasCard').scrollIntoView({behavior:'smooth'})">
+        <i class="bi bi-calendar3"></i> Todas las citas
+    </button>
+    <button class="nav-btn fade-in fade-in-2" onclick="document.getElementById('serviciosCard').scrollIntoView({behavior:'smooth'})">
+        <i class="bi bi-gem"></i> Servicios
+    </button>
+    <button class="nav-btn fade-in fade-in-2" onclick="document.getElementById('barberosCard').scrollIntoView({behavior:'smooth'})">
+        <i class="bi bi-scissors"></i> Barberos
+    </button>
+    <button class="nav-btn fade-in fade-in-2" onclick="document.getElementById('usuariosCard').scrollIntoView({behavior:'smooth'})">
+        <i class="bi bi-people"></i> Usuarios
+    </button>
+    <button class="nav-btn fade-in fade-in-2" onclick="document.getElementById('reportesCard').scrollIntoView({behavior:'smooth'})">
+        <i class="bi bi-graph-up"></i> Reportes e ingresos
+    </button>
+    <button class="nav-btn fade-in fade-in-2" onclick="document.getElementById('horariosCard').scrollIntoView({behavior:'smooth'})">
+        <i class="bi bi-clock"></i> Horario del negocio
+    </button>
+    <button class="nav-btn fade-in fade-in-2" onclick="document.getElementById('auditoriaCard').scrollIntoView({behavior:'smooth'})">
+        <i class="bi bi-shield-check"></i> Auditoría
+    </button>
+
+    <button class="nav-btn danger fade-in fade-in-3" onclick="cerrarSesion()">
+        <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+    </button>
+
+</div>
+
+<div class="col-md-9 content">
+
+    <span class="page-eyebrow fade-in">Supervisión general</span>
+    <h2 class="page-title fade-in fade-in-1">Panel de Administración</h2>
+
+    <!-- RESUMEN -->
+    <div class="row" id="resumenCard">
+        <div class="col-md-3 fade-in fade-in-2">
+            <div class="card stat-card">
+                <i class="bi bi-calendar3"></i>
+                <h5>Citas totales</h5>
+                <h2 id="totalCitas">0</h2>
+            </div>
+        </div>
+        <div class="col-md-3 fade-in fade-in-2">
+            <div class="card stat-card">
+                <i class="bi bi-scissors"></i>
+                <h5>Barberos activos</h5>
+                <h2 id="totalBarberos">0</h2>
+            </div>
+        </div>
+        <div class="col-md-3 fade-in fade-in-3">
+            <div class="card stat-card">
+                <i class="bi bi-people-fill"></i>
+                <h5>Usuarios</h5>
+                <h2 id="totalUsuarios">0</h2>
+            </div>
+        </div>
+        <div class="col-md-3 fade-in fade-in-3">
+            <div class="card stat-card">
+                <i class="bi bi-cash-stack"></i>
+                <h5>Ingresos cobrados</h5>
+                <h2 id="ingresosTotales">$0</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 fade-in fade-in-3">
+            <div class="card stat-card">
+                <i class="bi bi-exclamation-circle"></i>
+                <h5>Pagos pendientes</h5>
+                <h2 id="pagosPendientes">$0</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- TODAS LAS CITAS -->
+    <div class="section-block fade-in fade-in-3" id="citasCard">
+        <div class="section-heading">
+            <div class="section-heading-left"><i class="bi bi-calendar3"></i><h4>Todas las Citas</h4></div>
+        </div>
+        <div class="card">
+            <div class="filtro-row">
+                <select id="filtroEstado" class="form-select" onchange="renderCitas()">
+                    <option value="">Todos los estados</option>
+                    <option value="pendiente">Pendiente</option>
+                    <option value="confirmada">Confirmada</option>
+                    <option value="en_proceso">En proceso</option>
+                    <option value="finalizada">Finalizada</option>
+                    <option value="cancelada">Cancelada</option>
+                    <option value="no_asistio">No asistió</option>
+                </select>
+                <select id="filtroPago" class="form-select" onchange="renderCitas()">
+                    <option value="">Todos los pagos</option>
+                    <option value="pagado">Pagado</option>
+                    <option value="pendiente">Pago pendiente</option>
+                </select>
+            </div>
+            <table class="table-custom">
+                <thead>
+                    <tr><th>Cliente</th><th>Servicio</th><th>Barbero</th><th>Fecha</th><th>Estado</th><th>Pago</th><th>Acciones</th></tr>
+                </thead>
+                <tbody id="cuerpoCitas"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- SERVICIOS -->
+    <div class="section-block fade-in fade-in-4" id="serviciosCard">
+        <div class="section-heading">
+            <div class="section-heading-left"><i class="bi bi-gem"></i><h4>Gestionar Servicios</h4></div>
+        </div>
+        <div class="card">
+            <div class="row g-2 mb-3">
+                <div class="col-md-4">
+                    <label class="form-label-gold">Nombre</label>
+                    <input type="text" id="servNombre" class="form-control" placeholder="Ej: Corte">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label-gold">Precio</label>
+                    <input type="number" id="servPrecio" class="form-control" placeholder="25000">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label-gold">Duración (min)</label>
+                    <input type="number" id="servDuracion" class="form-control" placeholder="30">
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button class="btn btn-gold w-100" onclick="agregarServicio()"><i class="bi bi-plus-lg"></i></button>
+                </div>
+            </div>
+            <table class="table-custom">
+                <thead><tr><th>Servicio</th><th>Precio</th><th>Duración</th><th>Estado</th><th>Acciones</th></tr></thead>
+                <tbody id="cuerpoServicios"></tbody>
+            </table>
+            <div id="editServicioBox" style="display:none;" class="mt-3 p-3 edit-box">
+                <p class="form-label-gold mb-2">Editando servicio</p>
+                <div class="row g-2">
+                    <div class="col-md-4">
+                        <input type="text" id="editServNombre" class="form-control" placeholder="Nombre">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" id="editServPrecio" class="form-control" placeholder="Precio">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" id="editServDuracion" class="form-control" placeholder="Duración">
+                    </div>
+                    <div class="col-md-2 d-flex gap-2">
+                        <button class="btn btn-gold w-100" onclick="guardarEdicionServicio()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BARBEROS -->
+    <div class="section-block fade-in fade-in-4" id="barberosCard">
+        <div class="section-heading">
+            <div class="section-heading-left"><i class="bi bi-scissors"></i><h4>Gestionar Barberos</h4></div>
+        </div>
+        <div class="card">
+            <div class="row g-2 mb-3">
+                <div class="col-md-5">
+                    <label class="form-label-gold">Nombre completo</label>
+                    <input type="text" id="barbNombre" class="form-control" placeholder="Ej: Julián Restrepo">
+                </div>
+                <div class="col-md-5">
+                    <label class="form-label-gold">Especialidad</label>
+                    <input type="text" id="barbEspecialidad" class="form-control" placeholder="Ej: Fades">
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button class="btn btn-gold w-100" onclick="agregarBarbero()"><i class="bi bi-plus-lg"></i></button>
+                </div>
+            </div>
+            <table class="table-custom">
+                <thead><tr><th>Nombre</th><th>Especialidad</th><th>Estado</th><th>Acciones</th></tr></thead>
+                <tbody id="cuerpoBarberos"></tbody>
+            </table>
+            <div id="editBarberoBox" style="display:none;" class="mt-3 p-3 edit-box">
+                <p class="form-label-gold mb-2">Editando barbero</p>
+                <div class="row g-2">
+                    <div class="col-md-5">
+                        <input type="text" id="editBarbNombre" class="form-control" placeholder="Nombre">
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" id="editBarbEspecialidad" class="form-control" placeholder="Especialidad">
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-gold w-100" onclick="guardarEdicionBarbero()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- USUARIOS -->
+    <div class="section-block fade-in fade-in-4" id="usuariosCard">
+        <div class="section-heading">
+            <div class="section-heading-left"><i class="bi bi-people"></i><h4>Gestionar Usuarios</h4></div>
+        </div>
+        <div class="card">
+            <table class="table-custom">
+                <thead><tr><th>Nombre</th><th>Usuario</th><th>Correo</th><th>Rol</th><th>Estado</th><th>Acciones</th></tr></thead>
+                <tbody id="cuerpoUsuarios"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- REPORTES -->
+    <div class="section-block fade-in fade-in-4" id="reportesCard">
+        <div class="section-heading">
+            <div class="section-heading-left"><i class="bi bi-graph-up"></i><h4>Reportes e Ingresos</h4></div>
+        </div>
+        <div class="card">
+            <div class="row">
+                <div class="col-md-5">
+                    <label class="form-label-gold">Desde</label>
+                    <input type="date" id="repDesde" class="form-control">
+                </div>
+                <div class="col-md-5">
+                    <label class="form-label-gold">Hasta</label>
+                    <input type="date" id="repHasta" class="form-control">
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button class="btn btn-gold w-100 mt-3" onclick="generarReporte()">Generar</button>
+                </div>
+            </div>
+            <div id="resultadoReporte" class="mt-3"></div>
+        </div>
+    </div>
+
+    <!-- HORARIO DEL NEGOCIO -->
+    <div class="section-block fade-in fade-in-4" id="horariosCard">
+        <div class="section-heading">
+            <div class="section-heading-left"><i class="bi bi-clock"></i><h4>Horario del Negocio</h4></div>
+        </div>
+        <div class="card">
+            <p class="cita-detalle mb-3" style="font-style:italic;color:var(--ash);">Define la apertura y el cierre general de la barbería. Esto delimita los horarios que verán los clientes al agendar.</p>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label-gold">Hora de apertura</label>
+                    <input type="time" id="horaApertura" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label-gold">Hora de cierre</label>
+                    <input type="time" id="horaCierre" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label-gold">Días de atención</label>
+                    <select id="diasAtencion" class="form-select" multiple size="4">
+                        <option value="Lunes">Lunes</option>
+                        <option value="Martes">Martes</option>
+                        <option value="Miércoles">Miércoles</option>
+                        <option value="Jueves">Jueves</option>
+                        <option value="Viernes">Viernes</option>
+                        <option value="Sábado">Sábado</option>
+                        <option value="Domingo">Domingo</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-gold mt-3" onclick="guardarHorarioNegocio()"><i class="bi bi-check2-circle me-1"></i> Guardar horario</button>
+            <p class="mt-3 cita-detalle" id="horarioActual"></p>
+        </div>
+    </div>
+
+    <!-- AUDITORÍA -->
+    <div class="section-block fade-in fade-in-4" id="auditoriaCard">
+        <div class="section-heading">
+            <div class="section-heading-left"><i class="bi bi-shield-check"></i><h4>Auditoría del Sistema</h4></div>
+            <button class="btn-danger-ghost" onclick="limpiarAuditoria()"><i class="bi bi-trash me-1"></i>Limpiar registro</button>
+        </div>
+        <div class="card">
+            <table class="table-custom">
+                <thead><tr><th>Usuario</th><th>Acción</th><th>Fecha y hora</th></tr></thead>
+                <tbody id="cuerpoAuditoria"></tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+// ======================
+// SESIÓN
+// ======================
+
+function getSesion(){
+    const raw = localStorage.getItem("usuario");
+    if(!raw) return null;
+    try{ return JSON.parse(raw); }catch(e){ return null; }
+}
+
+let sesion = getSesion();
+
+if(!sesion || sesion.rol !== "administrador"){
+    window.location.href = "login.html";
+}
+
+const nombreAdmin = sesion ? (sesion.nombre || sesion.usuario) : "";
+document.getElementById("nombre").innerText = nombreAdmin;
+document.getElementById("avatar").innerText = nombreAdmin ? nombreAdmin.charAt(0).toUpperCase() : "?";
+
+function cerrarSesion(){
+    localStorage.removeItem("usuario");
+    window.location.href = "login.html";
+}
+
+function registrarAuditoria(accion){
+    const auditoria = JSON.parse(localStorage.getItem("auditoria")) || [];
+    auditoria.push({ usuario: sesion.usuario, accion, fecha: new Date().toISOString() });
+    localStorage.setItem("auditoria", JSON.stringify(auditoria));
+    if(document.getElementById("cuerpoAuditoria")) renderAuditoria();
+}
+
+// ======================
+// HELPERS DE DATOS
+// ======================
+
+const estadoPagoTexto = { pagado: "Pagado", pendiente: "Pago pendiente" };
+
+function getCitas(){
+    let citas = JSON.parse(localStorage.getItem("citas")) || [];
+    let cambiado = false;
+
+    // Migración defensiva: completa datos faltantes en citas antiguas
+    // (por ejemplo, reservas guardadas antes de incluir id/estado/precio/cliente/pago).
+    citas.forEach(c=>{
+        if(!c.id){ c.id = Date.now() + Math.floor(Math.random()*100000); cambiado = true; }
+        if(!c.estado){ c.estado = "pendiente"; cambiado = true; }
+        if(c.precio === undefined || c.precio === null){
+            c.precio = parseInt((c.servicio||"").split(' - ')[1]) || 0;
+            cambiado = true;
+        }
+        if(!c.cliente){ c.cliente = "Cliente"; cambiado = true; }
+        if(!c.pago){
+            c.pago = { metodo:"efectivo", estado:"pendiente", fechaPago:null };
+            cambiado = true;
+        }
+    });
+
+    if(cambiado) localStorage.setItem("citas", JSON.stringify(citas));
+    return citas;
+}
+function setCitas(c){ localStorage.setItem("citas", JSON.stringify(c)); }
+
+function getServicios(){
+    let s = JSON.parse(localStorage.getItem("servicios"));
+    if(!s){
+        s = [
+            {id:1, nombre:"Corte", precio:25000, duracion:30, activo:true},
+            {id:2, nombre:"Fade", precio:35000, duracion:40, activo:true},
+            {id:3, nombre:"Barba", precio:20000, duracion:20, activo:true},
+            {id:4, nombre:"Cejas", precio:10000, duracion:10, activo:true},
+            {id:5, nombre:"Premium", precio:45000, duracion:60, activo:true}
+        ];
+        localStorage.setItem("servicios", JSON.stringify(s));
+    }
+    return s;
+}
+function setServicios(s){ localStorage.setItem("servicios", JSON.stringify(s)); }
+
+function getBarberos(){
+    let b = JSON.parse(localStorage.getItem("barberos"));
+    if(!b){
+        b = [
+            {id:1, nombre:"Julián Restrepo", especialidad:"Fades", activo:true, horariosBloqueados:[]},
+            {id:2, nombre:"Andrés Gómez", especialidad:"Barbas clásicas", activo:true, horariosBloqueados:[]},
+            {id:3, nombre:"Camilo Vargas", especialidad:"Diseños y líneas", activo:true, horariosBloqueados:[]},
+            {id:4, nombre:"Santiago Molina", especialidad:"Cortes ejecutivos", activo:true, horariosBloqueados:[]}
+        ];
+        localStorage.setItem("barberos", JSON.stringify(b));
+    }
+    return b;
+}
+function setBarberos(b){ localStorage.setItem("barberos", JSON.stringify(b)); }
+
+function getUsuarios(){ return JSON.parse(localStorage.getItem("usuariosRegistrados")) || []; }
+function setUsuarios(u){ localStorage.setItem("usuariosRegistrados", JSON.stringify(u)); }
+
+const estadoTexto = {
+    pendiente:"Pendiente", confirmada:"Confirmada", en_proceso:"En proceso",
+    finalizada:"Finalizada", cancelada:"Cancelada", no_asistio:"No asistió"
+};
+
+// ======================
+// RESUMEN
+// ======================
+
+function renderResumen(){
+    const citas = getCitas();
+    const barberos = getBarberos();
+    const usuarios = getUsuarios();
+
+    document.getElementById("totalCitas").innerText = citas.length;
+    document.getElementById("totalBarberos").innerText = barberos.filter(b=>b.activo).length;
+    document.getElementById("totalUsuarios").innerText = usuarios.length;
+
+    const ingresos = citas
+        .filter(c => c.pago && c.pago.estado === "pagado")
+        .reduce((s,c)=> s + (c.precio||0), 0);
+
+    const pendientesPago = citas
+        .filter(c => !c.pago || c.pago.estado !== "pagado")
+        .filter(c => c.estado !== "cancelada")
+        .reduce((s,c)=> s + (c.precio||0), 0);
+
+    document.getElementById("ingresosTotales").innerText = "$" + ingresos.toLocaleString('es-CO');
+    document.getElementById("pagosPendientes").innerText = "$" + pendientesPago.toLocaleString('es-CO');
+}
+
+// ======================
+// PAGOS
+// ======================
+
+function marcarPagado(id){
+    const citas = getCitas();
+    const cita = citas.find(c => c.id === id);
+    if(!cita) return;
+    cita.pago = { ...cita.pago, estado: "pagado", fechaPago: new Date().toISOString() };
+    setCitas(citas);
+    registrarAuditoria(`Marcó como pagada la cita ${id} (${cita.cliente})`);
+    renderCitas();
+    renderResumen();
+}
+
+// ======================
+// CITAS (RF33, RF37, HU37-39)
+// ======================
+
+function renderCitas(){
+    const filtroEstado = document.getElementById("filtroEstado").value;
+    const filtroPago = document.getElementById("filtroPago").value;
+
+    let citas = getCitas();
+    if(filtroEstado) citas = citas.filter(c => c.estado === filtroEstado);
+    if(filtroPago) citas = citas.filter(c => (c.pago ? c.pago.estado : "pendiente") === filtroPago);
+
+    const cuerpo = document.getElementById("cuerpoCitas");
+    cuerpo.innerHTML = "";
+
+    if(citas.length === 0){
+        cuerpo.innerHTML = `<tr><td colspan="7"><div class="empty-state"><i class="bi bi-calendar-x"></i><p>No hay citas para este filtro.</p></div></td></tr>`;
+        return;
+    }
+
+    citas.sort((a,b)=> (b.fecha+b.hora).localeCompare(a.fecha+a.hora));
+
+    const todosBarberos = getBarberos();
+
+    citas.forEach(cita=>{
+        // Incluye los barberos activos, y además el barbero actualmente asignado
+        // aunque esté inactivo, para no perder la referencia visual ni el dato real.
+        const nombresDisponibles = todosBarberos
+            .filter(b => b.activo || b.nombre === cita.barbero)
+            .map(b => b.nombre);
+
+        const opcionesBarbero = nombresDisponibles.map(nb =>
+            `<option value="${nb}" ${nb===cita.barbero?'selected':''}>${nb}</option>`
+        ).join("");
+
+        const pago = cita.pago || { estado: "pendiente" };
+        const pagoTexto = estadoPagoTexto[pago.estado] || "Pago pendiente";
+        const pagoClase = pago.estado === "pagado" ? "badge-pago-pagado" : "badge-pago-pendiente";
+
+        const btnPagar = pago.estado !== "pagado"
+            ? `<button class="btn-ok-ghost" onclick="marcarPagado(${cita.id})"><i class="bi bi-cash-coin me-1"></i>Marcar pagado</button>`
+            : "";
+
+        cuerpo.innerHTML += `
+        <tr>
+            <td>${cita.cliente || 'Cliente'}</td>
+            <td>${cita.servicio.split(' - ')[0]}</td>
+            <td>
+                <select class="form-select form-select-sm" style="min-width:150px;" onchange="reasignarBarbero(${cita.id}, this.value)">
+                    ${opcionesBarbero}
+                </select>
+            </td>
+            <td>${cita.fecha} ${cita.hora}</td>
+            <td><span class="badge-estado badge-${cita.estado}">${estadoTexto[cita.estado] || cita.estado}</span></td>
+            <td><span class="badge-pago ${pagoClase}">${pagoTexto}</span></td>
+            <td>
+                <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                    ${btnPagar}
+                    ${cita.estado !== "cancelada" && cita.estado !== "finalizada" ? `<button class="btn-danger-ghost" onclick="cancelarCitaAdmin(${cita.id})">Cancelar</button>` : ""}
+                </div>
+            </td>
+        </tr>`;
+    });
+}
+
+function reasignarBarbero(id, nuevoBarbero){
+    const citas = getCitas();
+    const cita = citas.find(c => c.id === id);
+    if(!cita) return;
+    cita.barbero = nuevoBarbero;
+    setCitas(citas);
+    registrarAuditoria(`Reasignó la cita ${id} a ${nuevoBarbero}`);
+    renderCitas();
+}
+
+function cancelarCitaAdmin(id){
+    if(!confirm("¿Cancelar esta cita y notificar al cliente?")) return;
+    const citas = getCitas();
+    const cita = citas.find(c => c.id === id);
+    if(!cita) return;
+    cita.estado = "cancelada";
+    setCitas(citas);
+    registrarAuditoria(`Canceló la cita ${id}`);
+    renderCitas();
+    renderResumen();
+}
+
+// ======================
+// SERVICIOS (HU31-33)
+// ======================
+
+function agregarServicio(){
+    const nombre = document.getElementById("servNombre").value.trim();
+    const precio = parseInt(document.getElementById("servPrecio").value);
+    const duracion = parseInt(document.getElementById("servDuracion").value);
+
+    if(!nombre || !precio || precio <= 0 || !duracion || duracion <= 0){
+        alert("Completa nombre, precio y duración con valores válidos.");
+        return;
+    }
+
+    const servicios = getServicios();
+    servicios.push({id: Date.now(), nombre, precio, duracion, activo:true});
+    setServicios(servicios);
+    registrarAuditoria(`Registró el servicio ${nombre}`);
+
+    document.getElementById("servNombre").value = "";
+    document.getElementById("servPrecio").value = "";
+    document.getElementById("servDuracion").value = "";
+
+    renderServicios();
+}
+
+let servicioEnEdicion = null;
+
+function editarServicio(id){
+    const servicios = getServicios();
+    const s = servicios.find(x=>x.id===id);
+    if(!s) return;
+    servicioEnEdicion = id;
+    document.getElementById("editServNombre").value = s.nombre;
+    document.getElementById("editServPrecio").value = s.precio;
+    document.getElementById("editServDuracion").value = s.duracion;
+    document.getElementById("editServicioBox").style.display = "block";
+    document.getElementById("editServicioBox").scrollIntoView({behavior:"smooth"});
+}
+
+function guardarEdicionServicio(){
+    if(servicioEnEdicion === null) return;
+    const nombre = document.getElementById("editServNombre").value.trim();
+    const precio = parseInt(document.getElementById("editServPrecio").value);
+    const duracion = parseInt(document.getElementById("editServDuracion").value);
+
+    if(!nombre || !precio || precio <= 0 || !duracion || duracion <= 0){
+        alert("Completa todos los campos con valores válidos.");
+        return;
+    }
+
+    const servicios = getServicios();
+    const s = servicios.find(x=>x.id===servicioEnEdicion);
+    if(s){
+        s.nombre = nombre;
+        s.precio = precio;
+        s.duracion = duracion;
+        setServicios(servicios);
+        registrarAuditoria(`Editó el servicio ${nombre}`);
+    }
+
+    servicioEnEdicion = null;
+    document.getElementById("editServicioBox").style.display = "none";
+    renderServicios();
+}
+
+function toggleServicio(id){
+    const servicios = getServicios();
+    const s = servicios.find(x=>x.id===id);
+    if(!s) return;
+    s.activo = !s.activo;
+    setServicios(servicios);
+    registrarAuditoria(`Cambió estado del servicio ${s.nombre}`);
+    renderServicios();
+}
+
+function eliminarServicio(id){
+    let servicios = getServicios();
+    const servicio = servicios.find(s=>s.id===id);
+    if(!servicio) return;
+
+    const enUso = getCitas().some(c =>
+        c.servicio.startsWith(servicio.nombre) &&
+        c.estado !== "finalizada" && c.estado !== "cancelada"
+    );
+    if(enUso){
+        alert("No se puede eliminar: hay citas activas con este servicio.");
+        return;
+    }
+    if(!confirm(`¿Eliminar el servicio "${servicio.nombre}"?`)) return;
+
+    servicios = servicios.filter(x=>x.id!==id);
+    setServicios(servicios);
+    registrarAuditoria(`Eliminó el servicio ${servicio.nombre}`);
+    renderServicios();
+}
+
+function renderServicios(){
+    const servicios = getServicios();
+    const cuerpo = document.getElementById("cuerpoServicios");
+    cuerpo.innerHTML = "";
+
+    servicios.forEach(s=>{
+        cuerpo.innerHTML += `
+        <tr>
+            <td>${s.nombre}</td>
+            <td>$${s.precio.toLocaleString('es-CO')}</td>
+            <td>${s.duracion} min</td>
+            <td><span class="badge-estado ${s.activo?'badge-activo':'badge-bloqueado'}">${s.activo?'Activo':'Inactivo'}</span></td>
+            <td>
+                <button class="btn-ghost" onclick="editarServicio(${s.id})">Editar</button>
+                <button class="btn-ghost" onclick="toggleServicio(${s.id})">${s.activo?'Desactivar':'Activar'}</button>
+                <button class="btn-danger-ghost" onclick="eliminarServicio(${s.id})">Eliminar</button>
+            </td>
+        </tr>`;
+    });
+}
+
+// ======================
+// BARBEROS (HU35-36)
+// ======================
+
+function agregarBarbero(){
+    const nombre = document.getElementById("barbNombre").value.trim();
+    const especialidad = document.getElementById("barbEspecialidad").value.trim() || "Por definir";
+
+    if(!nombre){
+        alert("Ingresa el nombre del barbero.");
+        return;
+    }
+
+    const barberos = getBarberos();
+    barberos.push({id: Date.now(), nombre, especialidad, activo:true, horariosBloqueados:[]});
+    setBarberos(barberos);
+    registrarAuditoria(`Registró al barbero ${nombre}`);
+
+    document.getElementById("barbNombre").value = "";
+    document.getElementById("barbEspecialidad").value = "";
+
+    renderBarberos();
+    renderResumen();
+}
+
+let barberoEnEdicion = null;
+
+function editarBarbero(id){
+    const barberos = getBarberos();
+    const b = barberos.find(x=>x.id===id);
+    if(!b) return;
+    barberoEnEdicion = id;
+    document.getElementById("editBarbNombre").value = b.nombre;
+    document.getElementById("editBarbEspecialidad").value = b.especialidad;
+    document.getElementById("editBarberoBox").style.display = "block";
+    document.getElementById("editBarberoBox").scrollIntoView({behavior:"smooth"});
+}
+
+function guardarEdicionBarbero(){
+    if(barberoEnEdicion === null) return;
+    const nombre = document.getElementById("editBarbNombre").value.trim();
+    const especialidad = document.getElementById("editBarbEspecialidad").value.trim();
+
+    if(!nombre){
+        alert("El nombre no puede quedar vacío.");
+        return;
+    }
+
+    const barberos = getBarberos();
+    const b = barberos.find(x=>x.id===barberoEnEdicion);
+    if(b){
+        const nombreAnterior = b.nombre;
+        b.nombre = nombre;
+        b.especialidad = especialidad || "Por definir";
+        setBarberos(barberos);
+
+        // Si cambió el nombre, actualiza también las citas ya asignadas a ese barbero
+        if(nombreAnterior !== nombre){
+            const citas = getCitas();
+            citas.forEach(c => { if(c.barbero === nombreAnterior) c.barbero = nombre; });
+            setCitas(citas);
+
+            // Y actualiza la cuenta de acceso del barbero (si tiene una), para no perder el vínculo
+            const usuarios = getUsuarios();
+            let cambiadoUsuarios = false;
+            usuarios.forEach(u => {
+                if(u.rol === "barbero" && u.barberoNombre === nombreAnterior){
+                    u.barberoNombre = nombre;
+                    cambiadoUsuarios = true;
+                }
+            });
+            if(cambiadoUsuarios) setUsuarios(usuarios);
+        }
+
+        registrarAuditoria(`Editó al barbero ${nombre}`);
+    }
+
+    barberoEnEdicion = null;
+    document.getElementById("editBarberoBox").style.display = "none";
+    renderBarberos();
+    renderCitas();
+}
+
+function toggleBarbero(id){
+    const barberos = getBarberos();
+    const b = barberos.find(x=>x.id===id);
+    if(!b) return;
+    b.activo = !b.activo;
+    setBarberos(barberos);
+    registrarAuditoria(`Cambió estado del barbero ${b.nombre}`);
+    renderBarberos();
+    renderResumen();
+    renderCitas();
+}
+
+function eliminarBarbero(id){
+    let barberos = getBarberos();
+    const barbero = barberos.find(x=>x.id===id);
+    if(!barbero) return;
+
+    const enUso = getCitas().some(c =>
+        c.barbero === barbero.nombre &&
+        c.estado !== "finalizada" && c.estado !== "cancelada"
+    );
+    if(enUso){
+        alert("No se puede eliminar: este barbero tiene citas activas asignadas.");
+        return;
+    }
+    if(!confirm(`¿Eliminar al barbero "${barbero.nombre}"?`)) return;
+
+    barberos = barberos.filter(x=>x.id!==id);
+    setBarberos(barberos);
+    registrarAuditoria(`Eliminó al barbero ${barbero.nombre}`);
+    renderBarberos();
+    renderResumen();
+}
+
+function renderBarberos(){
+    const barberos = getBarberos();
+    const cuerpo = document.getElementById("cuerpoBarberos");
+    cuerpo.innerHTML = "";
+
+    barberos.forEach(b=>{
+        cuerpo.innerHTML += `
+        <tr>
+            <td>${b.nombre}</td>
+            <td>${b.especialidad}</td>
+            <td><span class="badge-estado ${b.activo?'badge-activo':'badge-bloqueado'}">${b.activo?'Activo':'Inactivo'}</span></td>
+            <td>
+                <button class="btn-ghost" onclick="editarBarbero(${b.id})">Editar</button>
+                <button class="btn-ghost" onclick="toggleBarbero(${b.id})">${b.activo?'Desactivar':'Activar'}</button>
+                <button class="btn-danger-ghost" onclick="eliminarBarbero(${b.id})">Eliminar</button>
+            </td>
+        </tr>`;
+    });
+}
+
+// ======================
+// USUARIOS (HU34, HU43)
+// ======================
+
+function toggleUsuario(usuarioId){
+    const usuarios = getUsuarios();
+    const u = usuarios.find(x=>x.usuario===usuarioId);
+    if(!u) return;
+    u.bloqueado = !u.bloqueado;
+    setUsuarios(usuarios);
+    registrarAuditoria(`${u.bloqueado?'Bloqueó':'Activó'} al usuario ${u.usuario}`);
+    renderUsuarios();
+}
+
+function renderUsuarios(){
+    const usuarios = getUsuarios();
+    const cuerpo = document.getElementById("cuerpoUsuarios");
+    cuerpo.innerHTML = "";
+
+    if(usuarios.length === 0){
+        cuerpo.innerHTML = `<tr><td colspan="6"><div class="empty-state"><i class="bi bi-person-x"></i><p>No hay usuarios registrados aún.</p></div></td></tr>`;
+        return;
+    }
+
+    usuarios.forEach(u=>{
+        cuerpo.innerHTML += `
+        <tr>
+            <td>${u.nombre || '-'}</td>
+            <td>${u.usuario}</td>
+            <td>${u.correo}</td>
+            <td style="text-transform:capitalize;">${u.rol || 'cliente'}</td>
+            <td><span class="badge-estado ${u.bloqueado?'badge-bloqueado':'badge-activo'}">${u.bloqueado?'Bloqueado':'Activo'}</span></td>
+            <td><button class="${u.bloqueado?'btn-ok-ghost':'btn-danger-ghost'}" onclick="toggleUsuario('${u.usuario}')">${u.bloqueado?'Activar':'Bloquear'}</button></td>
+        </tr>`;
+    });
+}
+
+// ======================
+// REPORTES (HU40-41, RF37)
+// ======================
+
+function generarReporte(){
+    const desde = document.getElementById("repDesde").value;
+    const hasta = document.getElementById("repHasta").value;
+
+    if(desde && hasta && desde > hasta){
+        alert("La fecha 'Desde' no puede ser posterior a la fecha 'Hasta'.");
+        return;
+    }
+
+    const citas = getCitas().filter(c =>
+        (!desde || c.fecha >= desde) && (!hasta || c.fecha <= hasta)
+    );
+
+    const finalizadas = citas.filter(c=>c.estado==="finalizada");
+    const canceladas = citas.filter(c=>c.estado==="cancelada");
+    const noAsistio = citas.filter(c=>c.estado==="no_asistio");
+
+    const pagadas = citas.filter(c => c.pago && c.pago.estado === "pagado");
+    const pendientesPago = citas.filter(c => !c.pago || c.pago.estado !== "pagado");
+
+    const ingresos = pagadas.reduce((s,c)=> s + (c.precio||0), 0);
+    const montoPendiente = pendientesPago.reduce((s,c)=> s + (c.precio||0), 0);
+
+    document.getElementById("resultadoReporte").innerHTML = `
+        <div class="row text-center">
+            <div class="col-md-3"><div class="card stat-card"><h5>Citas en el rango</h5><h2>${citas.length}</h2></div></div>
+            <div class="col-md-3"><div class="card stat-card"><h5>Finalizadas</h5><h2>${finalizadas.length}</h2></div></div>
+            <div class="col-md-3"><div class="card stat-card"><h5>Canceladas / No asistió</h5><h2>${canceladas.length + noAsistio.length}</h2></div></div>
+            <div class="col-md-3"><div class="card stat-card"><h5>Ingresos cobrados</h5><h2>$${ingresos.toLocaleString('es-CO')}</h2></div></div>
+        </div>
+        <div class="row text-center mt-2">
+            <div class="col-md-6"><div class="card stat-card"><h5>Citas pagadas</h5><h2>${pagadas.length}</h2></div></div>
+            <div class="col-md-6"><div class="card stat-card"><h5>Monto pendiente por cobrar</h5><h2>$${montoPendiente.toLocaleString('es-CO')}</h2></div></div>
+        </div>
+    `;
+
+    registrarAuditoria(`Generó un reporte (${desde || 'inicio'} a ${hasta || 'hoy'})`);
+}
+
+// ======================
+// HORARIO DEL NEGOCIO (HU42)
+// ======================
+
+function guardarHorarioNegocio(){
+    const apertura = document.getElementById("horaApertura").value;
+    const cierre = document.getElementById("horaCierre").value;
+    const dias = Array.from(document.getElementById("diasAtencion").selectedOptions).map(o=>o.value);
+
+    if(!apertura || !cierre || dias.length===0){
+        alert("Completa apertura, cierre y al menos un día de atención.");
+        return;
+    }
+
+    if(apertura >= cierre){
+        alert("La hora de apertura debe ser antes de la hora de cierre.");
+        return;
+    }
+
+    const horario = {apertura, cierre, dias};
+    localStorage.setItem("horarioNegocio", JSON.stringify(horario));
+    registrarAuditoria(`Actualizó el horario del negocio (${apertura} - ${cierre})`);
+    renderHorarioNegocio();
+}
+
+function renderHorarioNegocio(){
+    const raw = localStorage.getItem("horarioNegocio");
+    const el = document.getElementById("horarioActual");
+    if(!raw){
+        el.innerText = "Aún no se ha configurado un horario. Por defecto: 8:00 AM – 7:00 PM, todos los días.";
+        return;
+    }
+    const h = JSON.parse(raw);
+    document.getElementById("horaApertura").value = h.apertura;
+    document.getElementById("horaCierre").value = h.cierre;
+    Array.from(document.getElementById("diasAtencion").options).forEach(o=>{
+        o.selected = h.dias.includes(o.value);
+    });
+    el.innerHTML = `Horario actual: <strong style="color:var(--gold-light)">${h.apertura} – ${h.cierre}</strong> · ${h.dias.join(", ")}`;
+}
+
+// ======================
+// AUDITORÍA (HU44)
+// ======================
+
+function renderAuditoria(){
+    const auditoria = JSON.parse(localStorage.getItem("auditoria")) || [];
+    const cuerpo = document.getElementById("cuerpoAuditoria");
+    cuerpo.innerHTML = "";
+
+    if(auditoria.length === 0){
+        cuerpo.innerHTML = `<tr><td colspan="3"><div class="empty-state"><i class="bi bi-shield-x"></i><p>Aún no hay acciones registradas.</p></div></td></tr>`;
+        return;
+    }
+
+    auditoria.slice().reverse().forEach(a=>{
+        const fecha = new Date(a.fecha).toLocaleString('es-CO');
+        cuerpo.innerHTML += `
+        <tr>
+            <td>${a.usuario}</td>
+            <td>${a.accion}</td>
+            <td>${fecha}</td>
+        </tr>`;
+    });
+}
+
+function limpiarAuditoria(){
+    if(!confirm("¿Borrar todo el historial de auditoría?")) return;
+    localStorage.removeItem("auditoria");
+    renderAuditoria();
+}
+
+// ======================
+// INIT
+// ======================
+
+function renderTodo(){
+    renderResumen();
+    renderCitas();
+    renderServicios();
+    renderBarberos();
+    renderUsuarios();
+    renderHorarioNegocio();
+    renderAuditoria();
+}
+
+if(sesion && sesion.rol === "administrador"){
+    renderTodo();
+}
+
+</script>
+
+</body>
+</html>

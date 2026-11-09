@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barbería Élite del Estilo</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/barberia.css"></head>
+<body>
+
+<div id="progress"></div>
+<div id="cursorGlow"></div>
+<button id="toTop" aria-label="Volver arriba"><i class="bi bi-chevron-up"></i></button>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+<div class="container">
+  <a class="navbar-brand" href="#"><i class="bi bi-scissors"></i> Barbería Élite del Estilo</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"><span class="navbar-toggler-icon"></span></button>
+  <div class="collapse navbar-collapse" id="menu">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+      <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+      <li class="nav-item"><a class="nav-link" href="#barberos">Barberos</a></li>
+      <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
+      <li class="nav-item"><a class="nav-link" href="#horarios">Horarios</a></li>
+      <li class="nav-item"><a class="nav-link" href="#resenas">Reseñas</a></li>
+      <li class="nav-item"><a class="nav-link" href="#galeria">Galería</a></li>
+    </ul>
+    <div class="d-flex gap-2 ms-3 mt-3 mt-lg-0" id="authArea">
+      <a href="login.html" class="btn btn-outline-gold">Iniciar Sesión</a>
+      <button class="btn btn-gold">Reservar</button>
+    </div>
+  </div>
+</div>
+</nav>
+
+<section id="inicio" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#inicio" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#inicio" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#inicio" data-bs-slide-to="2"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="hero-slide">
+        <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=1600')"></div>
+        <div class="container hero-content">
+          <span class="hero-eyebrow">Tradición &amp; Distinción</span>
+          <h1>BARBERÍA ÉLITE DEL ESTILO</h1>
+          <div class="gold-divider"><span class="line"></span><i class="bi bi-gem"></i><span class="line right"></span></div>
+          <p class="lead-text">Cortes urbanos modernos y una experiencia de estilo verdaderamente premium.</p>
+          <button class="btn btn-gold btn-lg mt-4 pulse">Reservar Cita</button>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="hero-slide">
+        <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1600')"></div>
+        <div class="container hero-content">
+          <span class="hero-eyebrow">Precisión Artesanal</span>
+          <h1>FADES PERFECTOS</h1>
+          <div class="gold-divider"><span class="line"></span><i class="bi bi-gem"></i><span class="line right"></span></div>
+          <p class="lead-text">Cada línea, cada degradado, trazado con la precisión de un maestro barbero.</p>
+          <a href="#servicios" class="btn btn-gold btn-lg mt-4">Ver Servicios</a>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="hero-slide">
+        <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=1600')"></div>
+        <div class="container hero-content">
+          <span class="hero-eyebrow">Estilo Con Carácter</span>
+          <h1>ESTILO QUE IMPACTA</h1>
+          <div class="gold-divider"><span class="line"></span><i class="bi bi-gem"></i><span class="line right"></span></div>
+          <p class="lead-text">Diseño moderno, elegante y profesional para el hombre que marca la diferencia.</p>
+          <a href="#nosotros" class="btn btn-gold btn-lg mt-4">Conócenos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="particles"></div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#inicio" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+  <button class="carousel-control-next" type="button" data-bs-target="#inicio" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+  <div class="scroll-cue">Desliza<i class="bi bi-chevron-down"></i></div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>CORTES<i class="bi bi-scissors"></i>FADES<i class="bi bi-scissors"></i>BARBA<i class="bi bi-scissors"></i>CEJAS<i class="bi bi-scissors"></i>PREMIUM<i class="bi bi-scissors"></i>ESTILO URBANO<i class="bi bi-scissors"></i></span>
+    <span>CORTES<i class="bi bi-scissors"></i>FADES<i class="bi bi-scissors"></i>BARBA<i class="bi bi-scissors"></i>CEJAS<i class="bi bi-scissors"></i>PREMIUM<i class="bi bi-scissors"></i>ESTILO URBANO<i class="bi bi-scissors"></i></span>
+  </div>
+</div>
+
+<section id="servicios" class="services py-5">
+<div class="container py-5">
+  <span class="section-eyebrow reveal">El Menú</span>
+  <h2 class="section-title reveal">Nuestros Servicios</h2>
+  <div class="section-underline reveal"><span></span></div>
+  <div class="row g-4 justify-content-center">
+    <div class="col-6 col-md-4 col-lg-2 reveal"><div class="service-card tilt"><div class="img-wrap"><img alt="Corte" src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=900"></div><h5>Corte</h5><p class="price">$25.000</p></div></div>
+    <div class="col-6 col-md-4 col-lg-2 reveal reveal-delay-1"><div class="service-card tilt"><div class="img-wrap"><img alt="Fade" src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=900"></div><h5>Fade</h5><p class="price">$35.000</p></div></div>
+    <div class="col-6 col-md-4 col-lg-2 reveal reveal-delay-2"><div class="service-card tilt"><div class="img-wrap"><img alt="Barba" src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=900"></div><h5>Barba</h5><p class="price">$20.000</p></div></div>
+    <div class="col-6 col-md-4 col-lg-2 reveal reveal-delay-3"><div class="service-card tilt"><div class="img-wrap"><img alt="Cejas" src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?q=80&w=900"></div><h5>Cejas</h5><p class="price">$10.000</p></div></div>
+    <div class="col-6 col-md-4 col-lg-2 reveal reveal-delay-4"><div class="service-card tilt"><div class="img-wrap"><img alt="Premium" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=900"></div><h5>Premium</h5><p class="price">$45.000</p></div></div>
+  </div>
+</div>
+</section>
+
+<section id="barberos" class="barbers py-5">
+<div class="container py-5">
+  <span class="section-eyebrow reveal">Nuestro Equipo</span>
+  <h2 class="section-title reveal">Elige a tu Barbero</h2>
+  <div class="section-underline reveal"><span></span></div>
+  <div class="row g-4" id="barberGrid">
+    <div class="col-md-6 col-lg-3 reveal"><div class="barber-card tilt" data-barbero="Julián Restrepo"><div class="barber-photo"><img alt="Julián Restrepo" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800"></div><div class="barber-info"><h5>Julián Restrepo</h5><p class="specialty">Especialista en Fades</p><div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><button class="btn-select-barber">Elegir</button></div></div></div>
+    <div class="col-md-6 col-lg-3 reveal reveal-delay-1"><div class="barber-card tilt" data-barbero="Andrés Gómez"><div class="barber-photo"><img alt="Andrés Gómez" src="https://images.unsplash.com/photo-1567894340315-735d7c361db0?q=80&w=800"></div><div class="barber-info"><h5>Andrés Gómez</h5><p class="specialty">Barbas Clásicas</p><div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></div><button class="btn-select-barber">Elegir</button></div></div></div>
+    <div class="col-md-6 col-lg-3 reveal reveal-delay-2"><div class="barber-card tilt" data-barbero="Camilo Vargas"><div class="barber-photo"><img alt="Camilo Vargas" src="https://images.unsplash.com/photo-1618886614638-80e3c103d31a?q=80&w=800"></div><div class="barber-info"><h5>Camilo Vargas</h5><p class="specialty">Diseños &amp; Líneas</p><div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><button class="btn-select-barber">Elegir</button></div></div></div>
+    <div class="col-md-6 col-lg-3 reveal reveal-delay-3"><div class="barber-card tilt" data-barbero="Santiago Molina"><div class="barber-photo"><img alt="Santiago Molina" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800"></div><div class="barber-info"><h5>Santiago Molina</h5><p class="specialty">Cortes Ejecutivos</p><div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></div><button class="btn-select-barber">Elegir</button></div></div></div>
+  </div>
+  <p class="selection-note reveal" id="selectionNote">Selecciona el barbero de tu preferencia para tu próxima cita.</p>
+</div>
+</section>
+
+<section id="nosotros" class="about py-5">
+<div class="container py-5">
+  <div class="row align-items-center">
+    <div class="col-md-6 reveal"><div class="about-img-wrap"><img alt="Nuestra barbería" src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=1200" class="img-fluid rounded-1 shadow-lg"></div></div>
+    <div class="col-md-6 reveal reveal-delay-1">
+      <span class="hero-eyebrow d-block mb-2">Desde el corazón del barrio</span>
+      <h2>¿Quiénes Somos?</h2>
+      <div class="gold-divider"><span class="line"></span><i class="bi bi-gem"></i></div>
+      <p>Somos una barbería urbana enfocada en brindar una experiencia premium, moderna y profesional.</p>
+      <p class="mt-3">Nuestro objetivo es que cada cliente salga con más estilo, confianza y personalidad.</p>
+      <div class="about-stats">
+        <div class="stat"><h3><span class="count" data-to="8" data-suffix="+">0</span></h3><span>Años de Trayectoria</span></div>
+        <div class="stat"><h3><span class="count" data-to="4">0</span></h3><span>Maestros Barberos</span></div>
+        <div class="stat"><h3><span class="count" data-to="4.9" data-dec="1">0</span></h3><span>Calificación</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="horarios" class="hours py-5">
+<div class="container py-5">
+  <span class="section-eyebrow reveal">Te Esperamos</span>
+  <h2 class="section-title reveal">Horarios</h2>
+  <div class="section-underline reveal"><span></span></div>
+  <div class="hours-card reveal">
+    <div class="open-badge" id="openBadge">Abierto ahora</div>
+    <div class="hours-row" data-days="1,2,3,4,5"><strong>Lunes a Viernes</strong><span>9:00 am – 8:00 pm</span></div>
+    <div class="hours-row" data-days="6"><strong>Sábado</strong><span>9:00 am – 9:00 pm</span></div>
+    <div class="hours-row" data-days="0"><strong>Domingo</strong><span>10:00 am – 4:00 pm</span></div>
+  </div>
+</div>
+</section>
+
+<section id="resenas" class="reviews py-5">
+<div class="container py-5">
+  <span class="section-eyebrow reveal">La Voz de Nuestros Clientes</span>
+  <h2 class="section-title reveal">Reseñas</h2>
+  <div class="section-underline reveal"><span></span></div>
+  <div class="reviews-summary reveal">
+    <div class="big-score"><span class="count" data-to="4.9" data-dec="1">0</span></div>
+    <div class="stars mt-1"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></div>
+    <p class="mt-2" style="color:var(--ash)">Basado en más de <span class="count" data-to="320">0</span> reseñas</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-4 reveal"><div class="review-card tilt"><i class="bi bi-quote quote-icon"></i><p class="review-text">El mejor fade que me han hecho en la ciudad. Ambiente elegante y atención impecable de principio a fin.</p><div class="review-footer"><div class="review-avatar">M</div><div><div class="review-name">Mateo Rojas</div><div class="review-role">Cliente frecuente</div></div></div></div></div>
+    <div class="col-md-4 reveal reveal-delay-1"><div class="review-card tilt"><i class="bi bi-quote quote-icon"></i><p class="review-text">Reservé con Andrés para mi barba y quedé encantado. Detalle y precisión en cada tijeretazo.</p><div class="review-footer"><div class="review-avatar">D</div><div><div class="review-name">Daniel Ortiz</div><div class="review-role">Cliente nuevo</div></div></div></div></div>
+    <div class="col-md-4 reveal reveal-delay-2"><div class="review-card tilt"><i class="bi bi-quote quote-icon"></i><p class="review-text">Un lugar con clase de verdad. El diseño, la música, el trato: todo se siente premium sin ser pretencioso.</p><div class="review-footer"><div class="review-avatar">S</div><div><div class="review-name">Sebastián Cruz</div><div class="review-role">Cliente frecuente</div></div></div></div></div>
+  </div>
+</div>
+</section>
+
+<section id="galeria" class="gallery py-5">
+<div class="container py-5">
+  <span class="section-eyebrow reveal">Instantáneas</span>
+  <h2 class="section-title reveal">Nuestro Estilo</h2>
+  <div class="section-underline reveal"><span></span></div>
+  <div class="row g-3">
+    <div class="col-md-3 col-6 reveal"><div class="gallery-item"><img alt="" class="gallery-img" src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?q=80&w=900"><div class="overlay"><span>Detalle de barba</span></div></div></div>
+    <div class="col-md-3 col-6 reveal reveal-delay-1"><div class="gallery-item"><img alt="" class="gallery-img" src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=900"><div class="overlay"><span>Herramientas del oficio</span></div></div></div>
+    <div class="col-md-3 col-6 reveal reveal-delay-2"><div class="gallery-item"><img alt="" class="gallery-img" src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=900"><div class="overlay"><span>Corte de precisión</span></div></div></div>
+    <div class="col-md-3 col-6 reveal reveal-delay-3"><div class="gallery-item"><img alt="" class="gallery-img" src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=900"><div class="overlay"><span>Estilo terminado</span></div></div></div>
+  </div>
+</div>
+</section>
+
+<footer>
+  <div class="footer-brand"><i class="bi bi-scissors"></i> Barbería Élite del Estilo</div>
+  <p class="footer-tag">Estilo urbano premium para hombres modernos.</p>
+  <div class="social-icons">
+    <a href="#"><i class="bi bi-facebook"></i></a>
+    <a href="#"><i class="bi bi-instagram"></i></a>
+    <a href="#"><i class="bi bi-tiktok"></i></a>
+    <a href="#"><i class="bi bi-whatsapp"></i></a>
+  </div>
+  <p class="copy">© 2026 Barbería Élite del Estilo — Todos los derechos reservados</p>
+</footer>
+
+<script>
+/* ================= ANIMACIONES NUEVAS ================= */
+const nav = document.getElementById('mainNav');
+const progress = document.getElementById('progress');
+const toTop = document.getElementById('toTop');
+const glow = document.getElementById('cursorGlow');
+const heroBgs = document.querySelectorAll('.hero-bg');
+const navLinks = document.querySelectorAll('.nav-link');
+const secciones = [...document.querySelectorAll('section[id]')];
+
+window.addEventListener('scroll', ()=>{
+    const y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 60);
+    const h = document.documentElement.scrollHeight - innerHeight;
+    progress.style.width = (y / h * 100) + '%';
+    toTop.classList.toggle('show', y > 600);
+    if(y < innerHeight) heroBgs.forEach(b => b.style.translate = `0 ${y * .25}px`);
+    let actual = '';
+    secciones.forEach(s => { if(y + 140 >= s.offsetTop) actual = s.id; });
+    navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + actual));
+});
+toTop.addEventListener('click', ()=> scrollTo({top:0, behavior:'smooth'}));
+
+/* brillo que sigue al cursor */
+window.addEventListener('mousemove', e=>{
+    glow.style.opacity = 1;
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+});
+
+/* partículas doradas */
+const pBox = document.getElementById('particles');
+for(let i = 0; i < 22; i++){
+    const p = document.createElement('span');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDuration = (6 + Math.random() * 8) + 's';
+    p.style.animationDelay = (Math.random() * 8) + 's';
+    p.style.transform = `scale(${.5 + Math.random() * 1.5})`;
+    pBox.appendChild(p);
+}
+
+/* reveal + contadores */
+function contar(el){
+    const to = parseFloat(el.dataset.to), dec = parseInt(el.dataset.dec || 0), suf = el.dataset.suffix || '';
+    const t0 = performance.now(), dur = 1600;
+    (function paso(t){
+        const k = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - k, 3);
+        el.textContent = (to * e).toFixed(dec) + suf;
+        if(k < 1) requestAnimationFrame(paso);
+    })(t0);
+}
+const io = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add('in-view');
+            entry.target.querySelectorAll('.count').forEach(contar);
+            io.unobserve(entry.target);
+        }
+    });
+}, { threshold:.15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* tilt 3D + brillo en tarjetas */
+document.querySelectorAll('.tilt').forEach(card=>{
+    card.addEventListener('mousemove', e=>{
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        card.style.transform = `perspective(700px) rotateX(${(.5 - y) * 8}deg) rotateY(${(x - .5) * 8}deg) translateY(-6px)`;
+        card.style.setProperty('--mx', x * 100 + '%');
+        card.style.setProperty('--my', y * 100 + '%');
+    });
+    card.addEventListener('mouseleave', ()=> card.style.transform = '');
+});
+
+/* ripple en botones */
+document.addEventListener('click', e=>{
+    const b = e.target.closest('.btn-gold, .btn-outline-gold');
+    if(!b) return;
+    const r = b.getBoundingClientRect(), s = Math.max(r.width, r.height);
+    const sp = document.createElement('span');
+    sp.className = 'ripple';
+    sp.style.cssText = `width:${s}px;height:${s}px;left:${e.clientX - r.left - s/2}px;top:${e.clientY - r.top - s/2}px`;
+    b.appendChild(sp);
+    setTimeout(()=> sp.remove(), 600);
+});
+
+/* horario: resalta el día de hoy y estado abierto/cerrado */
+(function(){
+    const ahora = new Date(), dia = ahora.getDay(), hora = ahora.getHours();
+    const rangos = {0:[10,16], 6:[9,21]};
+    const [ini, fin] = rangos[dia] || [9,20];
+    document.querySelectorAll('.hours-row').forEach(r=>{
+        if(r.dataset.days.split(',').includes(String(dia))) r.classList.add('today');
+    });
+    const badge = document.getElementById('openBadge');
+    const abierto = hora >= ini && hora < fin;
+    badge.textContent = abierto ? 'Abierto ahora' : 'Cerrado ahora';
+    badge.classList.toggle('closed', !abierto);
+})();
+
+/* ================= CONEXIONES ORIGINALES (sin cambios) ================= */
+
+/* ---- selección de barbero ---- */
+const barberCards = document.querySelectorAll('.barber-card');
+const selectionNote = document.getElementById('selectionNote');
+
+function getBarberoElegido(){
+    return localStorage.getItem('barberoElegido');
+}
+
+function pintarSeleccion(){
+    const elegido = getBarberoElegido();
+    barberCards.forEach(card=>{
+        if(elegido && card.dataset.barbero === elegido){
+            card.classList.add('selected');
+            card.querySelector('.btn-select-barber').textContent = 'Seleccionado';
+        }else{
+            card.classList.remove('selected');
+            card.querySelector('.btn-select-barber').textContent = 'Elegir';
+        }
+    });
+    if(elegido){
+        selectionNote.innerHTML = `Has elegido a <strong>${elegido}</strong> para tu próxima cita.`;
+    }
+}
+
+barberCards.forEach(card=>{
+    card.addEventListener('click', ()=>{
+        localStorage.setItem('barberoElegido', card.dataset.barbero);
+        pintarSeleccion();
+    });
+});
+
+pintarSeleccion();
+
+/* ---- estado de sesión / login ---- */
+function getSesion(){
+    const raw = localStorage.getItem("usuario");
+    if(!raw) return null;
+    try{
+        return JSON.parse(raw);
+    }catch(e){
+        return { usuario: raw, rol: "cliente" };
+    }
+}
+
+function getUsuario(){
+    const sesion = getSesion();
+    if(!sesion) return null;
+    return sesion.nombre || sesion.usuario || sesion.correo || null;
+}
+
+function getRolUsuario(){
+    const sesion = getSesion();
+    return sesion ? (sesion.rol || "cliente") : null;
+}
+
+let usuario = getUsuario();
+let rol = getRolUsuario();
+
+if(usuario){
+    let contenedor = document.getElementById('authArea');
+    const esAdmin = rol === "administrador";
+    const esBarbero = rol === "barbero";
+    const etiqueta = esAdmin ? ' · Admin' : (esBarbero ? ' · Barbero' : '');
+    const textoBoton = esAdmin ? 'Panel Admin' : (esBarbero ? 'Panel Barbero' : 'Perfil');
+
+    if(contenedor){
+        contenedor.innerHTML = `
+            <span class="fw-bold align-self-center" style="color:var(--gold-light)">
+                👤 ${usuario}${etiqueta}
+            </span>
+            <button class="btn btn-gold btn-sm px-3" onclick="irPanel()">${textoBoton}</button>
+            <button class="btn btn-outline-gold btn-sm px-3" onclick="cerrarSesion()">Cerrar</button>
+        `;
+    }
+}
+
+function destinoSegunRol(){
+    const rolActual = getRolUsuario();
+    if(rolActual === "administrador") return "administrador.html";
+    if(rolActual === "barbero") return "panel-barbero.html";
+    return "panel.html";
+}
+
+function irPanel(){
+    window.location.href = destinoSegunRol();
+}
+
+function cerrarSesion(){
+    localStorage.removeItem("usuario");
+    window.location.reload();
+}
+
+document.querySelectorAll("button").forEach(btn => {
+    if(btn.innerText.trim() === "Reservar" || btn.innerText.trim() === "Reservar Cita"){
+        btn.addEventListener("click", ()=>{
+            let usuarioActual = getUsuario();
+            if(usuarioActual){
+                window.location.href = destinoSegunRol();
+            }else{
+                alert("Debes iniciar sesión");
+                window.location.href = "login.html";
+            }
+        });
+    }
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

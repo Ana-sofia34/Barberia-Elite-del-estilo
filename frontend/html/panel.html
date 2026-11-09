@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Panel del Cliente | Barbería Élite del Estilo</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/cliente.css">
+
+<!-- Widget de pagos en línea Wompi -->
+<script src="https://checkout.wompi.co/widget.js"></script>
+</head>
+
+<body>
+
+<!-- ===================== -->
+<!-- SIDEBAR -->
+<!-- ===================== -->
+<aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+        <img src="https://i.ibb.co/ksnQRFq5/logo.jpg" alt="Logo Barbería Élite del Estilo">
+        <div class="brand-text">
+            Élite del Estilo
+            <small>Barbería</small>
+        </div>
+    </div>
+
+    <div class="nav-label">Menú</div>
+
+    <button class="nav-btn" onclick="irInicio()">
+        <i class="bi bi-house-door"></i> Inicio
+    </button>
+    <button class="nav-btn active" data-nav onclick="irA('top', this)">
+        <i class="bi bi-grid-1x2"></i> Resumen
+    </button>
+    <button class="nav-btn" data-nav onclick="irA('reservaCard', this)">
+        <i class="bi bi-calendar2-plus"></i> Reservar cita
+    </button>
+    <button class="nav-btn" data-nav onclick="irA('historialCard', this)">
+        <i class="bi bi-clock-history"></i> Mis citas
+    </button>
+
+    <div class="sidebar-foot">
+        <div class="profile">
+            <div class="avatar" id="avatar">C</div>
+            <div class="profile-info">
+                <div class="profile-name" id="nombre">Cliente</div>
+                <div class="profile-role">Cliente Élite</div>
+            </div>
+        </div>
+        <button class="btn-logout" onclick="cerrarSesion()">
+            <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+        </button>
+    </div>
+
+</aside>
+
+<div class="overlay" id="overlay" onclick="cerrarSidebar()"></div>
+
+<!-- ===================== -->
+<!-- CONTENIDO -->
+<!-- ===================== -->
+<main class="main" id="top">
+
+    <header class="topbar">
+        <div class="topbar-left">
+            <button class="menu-toggle" onclick="abrirSidebar()" aria-label="Abrir menú">
+                <i class="bi bi-list"></i>
+            </button>
+            <div class="crumbs">Panel · <b>Cliente</b></div>
+        </div>
+        <div class="today"><i class="bi bi-calendar3"></i> <span id="hoyTexto"></span></div>
+    </header>
+
+    <section class="hero fade-in">
+        <div>
+            <span class="eyebrow" id="saludo">Bienvenido de nuevo</span>
+            <h1 class="page-title">Tu espacio de estilo</h1>
+            <p class="page-sub">Gestiona tus reservas, revisa tu historial y paga tus servicios en un solo lugar.</p>
+        </div>
+        <button class="btn-gold" onclick="irA('reservaCard')">
+            <i class="bi bi-plus-lg"></i> Nueva cita
+        </button>
+    </section>
+
+    <!-- ESTADÍSTICAS -->
+    <section class="stats">
+
+        <article class="stat fade-in d1">
+            <div class="stat-icon"><i class="bi bi-calendar3"></i></div>
+            <div class="stat-label">Total de citas</div>
+            <div class="stat-value" id="totalCitas">0</div>
+        </article>
+
+        <article class="stat fade-in d2">
+            <div class="stat-icon"><i class="bi bi-alarm"></i></div>
+            <div class="stat-label">Próxima cita</div>
+            <div class="stat-value sm" id="proximaCita">Sin agendar</div>
+            <div class="stat-note" id="proximaNota">Reserva tu próxima visita</div>
+        </article>
+
+        <article class="stat fade-in d3">
+            <div class="stat-icon"><i class="bi bi-wallet2"></i></div>
+            <div class="stat-label">Total pagado</div>
+            <div class="stat-value sm" id="totalInvertido">$0</div>
+            <div class="stat-note">En servicios pagados</div>
+        </article>
+
+        <article class="stat fade-in d4">
+            <div class="stat-icon"><i class="bi bi-patch-check"></i></div>
+            <div class="stat-label">Estado de cuenta</div>
+            <div class="stat-value sm"><span class="dot"></span>Activo</div>
+            <div class="stat-note">Cuenta verificada</div>
+        </article>
+
+    </section>
+
+    <!-- RESERVA + HISTORIAL -->
+    <section class="dash">
+
+        <!-- RESERVA -->
+        <div class="panel panel-sticky fade-in d3" id="reservaCard">
+
+            <div class="panel-head">
+                <div class="ico"><i class="bi bi-gem"></i></div>
+                <h4>Reservar cita</h4>
+            </div>
+            <p class="panel-sub">Elige tu servicio, tu barbero y el momento perfecto.</p>
+
+            <div class="field">
+                <label for="servicio">Servicio</label>
+                <div class="control">
+                    <i class="bi bi-scissors"></i>
+                    <select id="servicio"></select>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="barbero">Barbero</label>
+                <div class="control">
+                    <i class="bi bi-person-badge"></i>
+                    <select id="barbero"></select>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="field">
+                    <label for="fecha">Fecha</label>
+                    <div class="control">
+                        <i class="bi bi-calendar-event"></i>
+                        <input type="date" id="fecha">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="hora">Hora</label>
+                    <div class="control">
+                        <i class="bi bi-clock"></i>
+                        <input type="time" id="hora">
+                    </div>
+                </div>
+            </div>
+
+            <div class="booking-summary">
+                <div class="meta"><i class="bi bi-hourglass-split"></i><span id="resumenDuracion">—</span></div>
+                <div class="total" id="resumenTotal">$0</div>
+            </div>
+
+            <button class="btn-gold w-100" onclick="reservar()">
+                <i class="bi bi-check2-circle"></i> Continuar al pago
+            </button>
+
+            <div class="secure-note"><i class="bi bi-lock-fill"></i> Pagos protegidos por Wompi</div>
+
+        </div>
+
+        <!-- HISTORIAL -->
+        <div class="panel fade-in d4" id="historialCard">
+
+            <div class="panel-head">
+                <div class="ico"><i class="bi bi-clock-history"></i></div>
+                <h4>Historial de citas</h4>
+            </div>
+            <p class="panel-sub">Tus reservas anteriores y próximas.</p>
+
+            <div class="filters" role="tablist">
+                <button class="filter active" onclick="setFiltro('todas', this)">Todas</button>
+                <button class="filter" onclick="setFiltro('proximas', this)">Próximas</button>
+                <button class="filter" onclick="setFiltro('finalizadas', this)">Finalizadas</button>
+                <button class="filter" onclick="setFiltro('canceladas', this)">Canceladas</button>
+            </div>
+
+            <ul id="lista" class="lista"></ul>
+
+        </div>
+
+    </section>
+
+</main>
+
+<!-- ===================== -->
+<!-- MODAL DE PAGO -->
+<!-- ===================== -->
+<div class="modal fade" id="modalPago" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="bi bi-credit-card-2-front me-2"></i>Pagar servicio</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="resumen-pago" id="resumenPago"></div>
+
+        <span class="section-label">Método de pago</span>
+
+        <div class="metodo-pago selected" data-metodo="wompi" onclick="seleccionarMetodo('wompi')">
+            <i class="bi bi-shield-check"></i>
+            <span class="nombre">Pago en línea seguro <small>Tarjeta, PSE, Nequi y más con Wompi</small></span>
+            <i class="bi bi-check-circle-fill check"></i>
+        </div>
+
+        <div class="metodo-pago" data-metodo="efectivo" onclick="seleccionarMetodo('efectivo')">
+            <i class="bi bi-cash-coin"></i>
+            <span class="nombre">Pagar en el local <small>Cancelas al momento de tu cita</small></span>
+            <i class="bi bi-check-circle-fill check"></i>
+        </div>
+
+        <div class="aviso-wompi">
+            <i class="bi bi-info-circle"></i>
+            El pago en línea se procesa directamente en la plataforma segura de Wompi. Nosotros no almacenamos datos de tu tarjeta.
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-outline-gold" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn-gold" id="btnConfirmarPago" onclick="confirmarPago()">
+            <i class="bi bi-lock-fill"></i> Confirmar pago
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===================== -->
+<!-- MODAL DE CONFIRMACIÓN -->
+<!-- ===================== -->
+<div class="modal fade" id="modalConfirm" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content text-center">
+      <div class="modal-body" style="padding:34px 28px 18px;">
+        <div class="confirm-icon"><i class="bi bi-exclamation-triangle"></i></div>
+        <h5 class="modal-title mb-2" id="confirmTitulo">¿Estás seguro?</h5>
+        <p style="color:var(--ash); font-size:.9rem; line-height:1.55;" id="confirmTexto"></p>
+      </div>
+      <div class="modal-footer" style="justify-content:center; gap:10px; border-top:none; padding-top:6px;">
+        <button type="button" class="btn-outline-gold" data-bs-dismiss="modal">Volver</button>
+        <button type="button" class="btn-danger-soft" id="btnConfirmOk">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Notificaciones -->
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/cliente.js"></script>
+
+</body>
+</html>

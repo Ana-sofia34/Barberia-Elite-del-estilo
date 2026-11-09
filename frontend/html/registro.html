@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Crea tu cuenta en Barbería Élite del Estilo y reserva tus citas fácilmente.">
+<title>Crear Cuenta | Barbería Élite del Estilo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="../css/registro.css">
+</head>
+<body>
+
+<main class="auth">
+
+    <!-- Panel de marca -->
+    <aside class="brand-panel">
+        <div class="brand-top">
+            <img class="brand-logo" src="https://i.ibb.co/ksnQRFq5/logo.jpg" alt="Logo Barbería Élite del Estilo">
+            <div class="brand-name">
+                Barbería Élite
+                <small>del Estilo</small>
+            </div>
+        </div>
+
+        <div class="brand-hero">
+            <h2>Tu mejor versión <span>empieza aquí.</span></h2>
+            <p>Crea tu cuenta y accede a una experiencia de barbería premium: reserva en segundos y elige a tu barbero de confianza.</p>
+
+            <ul class="perks">
+                <li><i class="bi bi-calendar2-check-fill"></i> Reserva tus citas en línea, 24/7</li>
+                <li><i class="bi bi-scissors"></i> Elige a tu barbero favorito</li>
+                <li><i class="bi bi-clock-history"></i> Consulta tu historial de servicios</li>
+            </ul>
+        </div>
+
+        <div class="brand-foot">© 2026 Barbería Élite del Estilo</div>
+    </aside>
+
+    <!-- Panel de formulario -->
+    <section class="form-panel">
+        <div class="form-wrap">
+
+            <div class="mobile-brand">
+                <img src="https://i.ibb.co/ksnQRFq5/logo.jpg" alt="Logo Barbería">
+                <span>Barbería Élite del Estilo</span>
+            </div>
+
+            <header class="form-head">
+                <span class="eyebrow">Nuevo cliente</span>
+                <h1>Crear cuenta</h1>
+                <p>Completa tus datos para unirte a la Barbería Élite del Estilo.</p>
+            </header>
+
+            <div class="alert-box error" id="alertaError" role="alert">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                <span id="mensajeError">Por favor completa todos los campos.</span>
+            </div>
+
+            <div class="alert-box success" id="alertaExito" role="status">
+                <i class="bi bi-check-circle-fill"></i>
+                <span id="mensajeExito">Cuenta creada con éxito. Redirigiendo al inicio de sesión...</span>
+            </div>
+
+            <form id="formRegistro" autocomplete="off" novalidate>
+
+                <!-- 1. Datos personales -->
+                <div class="section">
+                    <div class="section-title"><span class="num">1</span> Datos personales</div>
+
+                    <div class="field">
+                        <label for="nombre">Nombre completo</label>
+                        <div class="control">
+                            <i class="bi bi-person-vcard-fill lead"></i>
+                            <input type="text" id="nombre" placeholder="Ej: Carlos Pérez" required>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="field">
+                            <label for="telefono">Teléfono</label>
+                            <div class="control">
+                                <i class="bi bi-telephone-fill lead"></i>
+                                <input type="tel" id="telefono" placeholder="300 000 0000" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="nacimiento">Fecha de nacimiento</label>
+                            <div class="control">
+                                <i class="bi bi-calendar-event-fill lead"></i>
+                                <input type="date" id="nacimiento" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Cuenta -->
+                <div class="section">
+                    <div class="section-title"><span class="num">2</span> Tu cuenta</div>
+
+                    <div class="grid-2">
+                        <div class="field">
+                            <label for="usuario">Nombre de usuario</label>
+                            <div class="control">
+                                <i class="bi bi-at lead"></i>
+                                <input type="text" id="usuario" name="reg_usuario" placeholder="Elige un usuario" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="email">Correo electrónico</label>
+                            <div class="control">
+                                <i class="bi bi-envelope-fill lead"></i>
+                                <input type="email" id="email" placeholder="tucorreo@ejemplo.com" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Seguridad -->
+                <div class="section">
+                    <div class="section-title"><span class="num">3</span> Seguridad</div>
+
+                    <div class="grid-2">
+                        <div class="field">
+                            <label for="password">Contraseña</label>
+                            <div class="control has-eye">
+                                <i class="bi bi-lock-fill lead"></i>
+                                <input type="password" id="password" name="reg_password" placeholder="Crea una contraseña" autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly')" required>
+                                <button type="button" class="toggle-eye" aria-label="Mostrar u ocultar contraseña" onclick="mostrarPassword('password', this)">
+                                    <i class="bi bi-eye-fill"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="password2">Confirmar contraseña</label>
+                            <div class="control has-eye">
+                                <i class="bi bi-shield-check lead"></i>
+                                <input type="password" id="password2" name="reg_password2" placeholder="Repite tu contraseña" autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly')" required>
+                                <button type="button" class="toggle-eye" aria-label="Mostrar u ocultar confirmación" onclick="mostrarPassword('password2', this)">
+                                    <i class="bi bi-eye-fill"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="strength" id="strength" data-level="0">
+                        <div class="strength-bars"><span></span><span></span><span></span><span></span></div>
+                        <span class="strength-label" id="strengthLabel">Mínimo 8 caracteres</span>
+                    </div>
+                </div>
+
+                <label class="check" for="terminos">
+                    <input type="checkbox" id="terminos">
+                    <span>Acepto los <a href="#">términos y condiciones</a></span>
+                </label>
+
+                <button type="button" class="btn-submit" id="btnRegistro">
+                    <i class="bi bi-person-plus-fill btn-icon"></i>
+                    <span class="spinner"></span>
+                    <span>Crear cuenta</span>
+                </button>
+
+            </form>
+
+            <p class="switch">¿Ya tienes cuenta? <a href="login.html">Iniciar sesión</a></p>
+            <p class="back"><a href="barberia.html"><i class="bi bi-arrow-left"></i> Volver al inicio</a></p>
+
+        </div>
+    </section>
+
+</main>
+
+<script src="../js/registro.js"></script>
+</body>
+</html>
